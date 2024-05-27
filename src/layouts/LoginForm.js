@@ -10,6 +10,7 @@ const LoginForm = () => {
   const [reRender, setReRender] = useState(false)
   const [login, setLogin] = useState('')
   const [password, setPassword] = useState('')
+  const [errorState, setErrorState] = useState('')
   const { isUserLoggedIn } = store.getState().UserLoginReducer
 
   const inputChange = (e) => {
@@ -28,6 +29,7 @@ const LoginForm = () => {
     const found = loginInfoTable.find((element) => element.login === login)
     if (!found) {
       store.dispatch({ type: LOGOUT_USER })
+      setErrorState('Incorrect login or password')
       setReRender(!reRender)
       return
     }
@@ -42,6 +44,7 @@ const LoginForm = () => {
         })
       }
       setReRender(!reRender)
+      setErrorState('')
     } else {
       store.dispatch({ type: LOGOUT_USER })
       setReRender(!reRender)
@@ -56,6 +59,7 @@ const LoginForm = () => {
             <h3>Hello! Log in here</h3>
             <input type='text' name='login' placeholder='login' value={login} onChange={inputChange} /> <br />
             <input type='password' name='password' placeholder='password' value={password} onChange={inputChange} /> <br />
+            <p id='errorP'>{errorState}</p>
             <button>Log in</button>
           </>
         ) : (

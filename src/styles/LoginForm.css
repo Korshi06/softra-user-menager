@@ -6,7 +6,6 @@
   width: 300px;
   display: flex;
   flex-direction: column;
-  gap: 1em;
 }
 
 .form input {
@@ -32,6 +31,11 @@
 
 .form p {
   text-align: center;
-  margin-top: 1em;
   color: #555;
+}
+
+.form #errorP {
+  padding: 0;
+  margin: 0;
+  color: rgb(212, 19, 19);
 }
