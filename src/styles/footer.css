@@ -1,0 +1,18 @@
+footer {
+  height: 20vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+footer li {
+  color: white !important;
+  font-size: 1.45rem;
+  transition: color 0.3s ease, font-size 0.3s ease;
+  line-height: 1.6rem;
+}
+
+footer li:hover {
+  font-size: 1.6rem;
+}

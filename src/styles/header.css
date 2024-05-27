@@ -1,0 +1,23 @@
+/* src/styles/header.css */
+header {
+  background-color: #343a40;
+  color: white;
+  height: 20vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+header li {
+  color: white !important;
+  font-size: 1.75rem; /* Larger text */
+  transition: color 0.3s ease, font-size 0.3s ease;
+  line-height: 2rem;
+}
+
+header li:hover {
+  text-decoration: underline red;
+  color: #f8d7da !important; /* Change color on hover */
+  font-size: 2rem; /* Slightly larger text on hover */
+}
