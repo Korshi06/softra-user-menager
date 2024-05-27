@@ -60,13 +60,13 @@ const LoginForm = () => {
             <input type='text' name='login' placeholder='login' value={login} onChange={inputChange} /> <br />
             <input type='password' name='password' placeholder='password' value={password} onChange={inputChange} /> <br />
             <p id='errorP'>{errorState}</p>
-            <button>Log in</button>
+            <button>Zaloguj</button>
           </>
         ) : (
-          <button>Log out</button>
+          <button>Wyloguj</button>
         )}
       </form>
-      {isUserLoggedIn ? <p>Logged in</p> : <p>Logged out</p>}
+      {isUserLoggedIn ? <p>Zalogowano</p> : <p>Wylogowano</p>}
     </div>
   )
 }

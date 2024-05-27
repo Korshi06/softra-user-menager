@@ -19,17 +19,17 @@ const Footer = () => {
               </li>
               <li>
                 <NavLink to='/login' className='text-white'>
-                  Login
+                  Zaloguj się
                 </NavLink>
               </li>
               <li>
                 <NavLink to='/clientInfoPage' className='text-white'>
-                  Client Info
+                  O klientach
                 </NavLink>
               </li>
               <li>
                 <NavLink to='/userInfoPage' className='text-white'>
-                  User Info
+                  Użytkownicy
                 </NavLink>
               </li>
             </ul>

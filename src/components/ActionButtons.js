@@ -100,13 +100,13 @@ const ActionButtons = ({ gridRefClients }) => {
     <>
       <div className='buttonWrapper'>
         <button onClick={handleEditBtn} className='actionButton btn btn-primary'>
-          Edit
+          Edytuj
         </button>
         <button onClick={handleAddBtn} className='actionButton btn btn-primary'>
-          Add
+          Dodaj
         </button>
         <button onClick={handleDeleteBtn} className='btn actionButton btn-danger'>
-          Delete
+          Usuń
         </button>
       </div>
       <ModalWindow

@@ -18,7 +18,7 @@ const CompanyInfo = (props) => {
           <h3>{boughtCopies === undefined ? 'brak' : boughtCopies}</h3>
         </Col>
         <Col className='infoBlock'>
-          <h5>Pozostała do wykorzystania:</h5>
+          <h5>Pozostało do wykorzystania:</h5>
           <h3>
             {boughtCopies === undefined
               ? 'brak'
