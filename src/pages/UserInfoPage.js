@@ -29,7 +29,7 @@ const UserInfoPage = () => {
   }, [isAdmin, isUserLoggedIn, clientsUsersTable, companyId])
 
   return (
-    <div id='userPage'>
+    <div id='userPage' className='center'>
       {isUserLoggedIn || isAdmin ? (
         <>
           <CompanyInfo clientsUsersTable={filteredUsers} />
