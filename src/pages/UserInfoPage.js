@@ -26,12 +26,13 @@ const UserInfoPage = () => {
     if (isAdmin) {
       setFilteredUsers(clientsUsersTable)
     }
-  }, [isAdmin, isUserLoggedIn, clientsUsersTable, companyId])
+  }, [isAdmin, isUserLoggedIn, companyId])
 
   return (
-    <div id='userPage' className='center'>
+    <div className='center'>
       {isUserLoggedIn || isAdmin ? (
         <>
+          <h1>User info</h1>
           <CompanyInfo clientsUsersTable={filteredUsers} />
           <UserTable clientsUsersTable={filteredUsers} />
           {/* <ActionButtons /> */}

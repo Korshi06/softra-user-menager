@@ -1,5 +1,5 @@
 .page {
-  min-height: 55vh;
+  min-height: 76vh;
   padding: 2.5vh;
 }
 
@@ -9,5 +9,5 @@
   align-items: center;
   justify-content: center;
   margin: auto;
-  height: 55vh;
+  min-height: 76vh;
 }

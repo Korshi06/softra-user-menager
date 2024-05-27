@@ -28,7 +28,7 @@ const HomePage = () => {
           <img src='https://picsum.photos/250/120' alt='logo' />
           <nav>
             <ul>
-              <li id='btn'>
+              <li id='btnHome'>
                 <NavLink to='/login'>Log in</NavLink>
               </li>
             </ul>

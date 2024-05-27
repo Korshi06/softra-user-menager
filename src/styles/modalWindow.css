@@ -17,9 +17,10 @@
   align-items: center;
   justify-content: center;
   gap: 1em;
+  width: 40vw;
 }
 
-form {
+.modalWindow form {
   display: flex;
   flex-direction: column;
   gap: 1em;

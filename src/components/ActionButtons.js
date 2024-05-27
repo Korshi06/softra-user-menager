@@ -28,17 +28,13 @@ const ActionButtons = ({ gridRefClients }) => {
     }
 
     const editedTable = dataStore.getState().DataReducer.aboutCompany.map((item) => {
-      console.log(item)
       if (item.companyId === companyId) {
-        console.log('found')
         return editedClient
       }
       return item
     })
 
     dataStore.dispatch({ type: UPDATE_DATA, aboutCompany: editedTable })
-
-    console.log(dataStore.getState().DataReducer.aboutCompany)
 
     gridRefClients.current.api.setGridOption('rowData', dataStore.getState().DataReducer.aboutCompany)
 
@@ -101,17 +97,18 @@ const ActionButtons = ({ gridRefClients }) => {
   }
 
   return (
-    <div className='buttonWrapper'>
-      <button onClick={handleEditBtn} className='btn actionButton btn-primary'>
-        Edit
-      </button>
-      <button onClick={handleAddBtn} className='btn actionButton btn-primary'>
-        Add
-      </button>
-      <button onClick={handleDeleteBtn} className='btn actionButton btn-danger'>
-        Delete
-      </button>
-
+    <>
+      <div className='buttonWrapper'>
+        <button onClick={handleEditBtn} className='actionButton btn btn-primary'>
+          Edit
+        </button>
+        <button onClick={handleAddBtn} className='actionButton btn btn-primary'>
+          Add
+        </button>
+        <button onClick={handleDeleteBtn} className='btn actionButton btn-danger'>
+          Delete
+        </button>
+      </div>
       <ModalWindow
         openModal={openModal}
         deleteFromClients={deleteFromClients}
@@ -122,7 +119,7 @@ const ActionButtons = ({ gridRefClients }) => {
         adding={adding}
         addClient={addClient}
       />
-    </div>
+    </>
   )
 }
 

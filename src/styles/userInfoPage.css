@@ -6,8 +6,5 @@
   margin: 20px;
   padding: 20px;
   background-color: rgb(218, 211, 211);
-}
-
-.userPage {
-  min-height: 55vh;
+  width: 100%;
 }

@@ -5,6 +5,7 @@ import { store } from '../store/UserLoggedStore'
 import ActionButtons from '../components/ActionButtons'
 import { Provider } from 'react-redux'
 import { dataStore } from '../store/DataStore'
+import '../styles/userInfoPage.css'
 //All the clients that have bought the app will be shown here
 //only for admin
 
@@ -14,11 +15,13 @@ const ClientInfoPage = () => {
   return (
     <>
       {admin ? (
-        <Provider store={dataStore}>
-          <h1>ClientInfoPage</h1>
-          <ClientTable gridRefClients={gridRefClients} />
-          <ActionButtons gridRefClients={gridRefClients} />
-        </Provider>
+        <div className='center'>
+          <Provider store={dataStore}>
+            <h1>Client info</h1>
+            <ClientTable gridRefClients={gridRefClients} />
+            <ActionButtons gridRefClients={gridRefClients} />
+          </Provider>
+        </div>
       ) : (
         <div className='center'>
           <h1>ClientInfoPage</h1>

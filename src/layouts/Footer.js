@@ -10,10 +10,7 @@ const Footer = () => {
     <footer className=' bg-dark text-white  text-center'>
       <Container>
         <Row>
-          <Col md='4'>
-            <img src='https://picsum.photos/250/120' alt='logo' />
-          </Col>
-          <Col md='4'>
+          <Col md='10'>
             <ul className='list-unstyled'>
               <li>
                 <NavLink to='/' className='text-white'>
@@ -37,7 +34,7 @@ const Footer = () => {
               </li>
             </ul>
           </Col>
-          <Col md='4'>
+          <Col md='2'>
             <p>&copy; Softra 2024 </p>
           </Col>
         </Row>

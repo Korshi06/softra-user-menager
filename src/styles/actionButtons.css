@@ -1,16 +1,20 @@
-buttonWrapper {
-  position: relative;
-  z-index: 1;
+.buttonWrapper {
+  /* position: relative;
+  z-index: 1; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
 }
 
 .actionButton {
   padding: 10px 20px;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
+  /* display: inline-block; */
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
-  width: 20%;
+  width: 30%;
   transition-duration: 0.4s;
 }

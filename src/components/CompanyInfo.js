@@ -19,7 +19,11 @@ const CompanyInfo = (props) => {
         </Col>
         <Col className='infoBlock'>
           <h5>Pozostała do wykorzystania:</h5>
-          <h3>{boughtCopies === undefined ? 'brak' : boughtCopies - props.clientsUsersTable.length}</h3>
+          <h3>
+            {boughtCopies === undefined
+              ? 'brak'
+              : boughtCopies - props.clientsUsersTable.filter((user) => user.Aktywny === true).length}
+          </h3>
         </Col>
       </Row>
     </Container>
