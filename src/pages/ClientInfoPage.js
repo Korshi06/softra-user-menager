@@ -17,15 +17,15 @@ const ClientInfoPage = () => {
       {admin ? (
         <div className='center'>
           <Provider store={dataStore}>
-            <h1>Client info</h1>
+            <h1>O klientach</h1>
             <ClientTable gridRefClients={gridRefClients} />
             <ActionButtons gridRefClients={gridRefClients} />
           </Provider>
         </div>
       ) : (
         <div className='center'>
-          <h1>ClientInfoPage</h1>
-          <h3>Log in as an Admin to access this page</h3>
+          <h1>O klientach</h1>
+          <h3>Zaloguj się jako admin by wyświetlić!</h3>
           <NavLink to='/login'>Log in page</NavLink>
         </div>
       )}

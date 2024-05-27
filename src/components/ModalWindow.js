@@ -15,7 +15,7 @@ const ModalWindow = ({ openModal, closeModal, editing, gridRefClients, adding, a
     return (
       <div className='modalOverlay'>
         <div className='modalWindow'>
-          <h2>Please select a row to edit</h2>
+          <h2>Wybierz wiersz by go edytować.</h2>
           <button onClick={closeModal}>Close</button>
         </div>
       </div>
@@ -50,21 +50,21 @@ const ModalEdit = ({ closeModal, gridRefClients, editClient }) => {
   return (
     <div className='modalOverlay'>
       <div className='modalWindow'>
-        <h2>Editing {gridRefClients.current.api.getSelectedRows()[0].companyName}</h2>
+        <h2>Edytowanie {gridRefClients.current.api.getSelectedRows()[0].companyName}</h2>
         <div>
           <form onSubmit={editClient}>
             <label>
-              Company Name
+              Nazwa firmy:
               <input type='text' placeholder='Company Name' name='companyName' value={companyName} onChange={handleChange} />
             </label>
             <label>
-              Bought copies:
+              Wykupione kopie:
               <input type='number' placeholder='Bought Copies' name='boughtCopies' value={boughtCopies} onChange={handleChange} />
             </label>
             <br />
-            <button>Save</button>
+            <button>Zapisz</button>
           </form>
-          <button onClick={closeModal}>Cancel</button>
+          <button onClick={closeModal}>Anuluj</button>
         </div>
       </div>
     </div>
@@ -75,11 +75,11 @@ const ModalDelete = ({ closeModal, gridRefClients, deleteFromClients }) => {
   return (
     <div className='modalOverlay'>
       <div className='modalWindow'>
-        <h2>Are you sure you want to delete this item?</h2>
+        <h2>Czy jesteś pewien że chcesz usunąć te dane?</h2>
         <h5>{gridRefClients.current.api.getSelectedRows()[0].companyName}</h5>
         <div>
-          <button onClick={deleteFromClients}>Delete</button>
-          <button onClick={closeModal}>Cancel</button>
+          <button onClick={deleteFromClients}>Usuń</button>
+          <button onClick={closeModal}>Anuluj</button>
         </div>
       </div>
     </div>
@@ -87,32 +87,6 @@ const ModalDelete = ({ closeModal, gridRefClients, deleteFromClients }) => {
 }
 
 const ModalAdding = ({ addClient, closeModal }) => {
-  // const [companyName, setCompanyName] = useState()
-  // const [boughtCopies, setBoughtCopies] = useState()
-  // const [companyId, setCompanyId] = useState()
-  // const [clientId, setClientId] = useState()
-
-  // const handleChange = (e) => {
-  //   e.preventDefault()
-
-  //   const { name, value } = e.target
-  //   if (name === 'companyId') {
-  //     setCompanyId(value)
-  //   } else if (name === 'clientId') {
-  //     setClientId(value)
-  //   } else if (name === 'companyName') {
-  //     setCompanyName(value)
-  //   } else if (name === 'boughtCopies') {
-  //     setBoughtCopies(value)
-  //   }
-  // }
-
-  // const {
-  //   register,
-  //   handleSubmit,
-  //   formState: { errors },
-  // } = useForm()
-
   const {
     register,
     handleSubmit,
@@ -122,7 +96,7 @@ const ModalAdding = ({ addClient, closeModal }) => {
   return (
     <div className='modalOverlay'>
       <div className='modalWindow'>
-        <h2>Adding a new client</h2>
+        <h2>Dodawanie danych</h2>
         <div>
           <form onSubmit={handleSubmit(addClient)}>
             <input
@@ -132,7 +106,9 @@ const ModalAdding = ({ addClient, closeModal }) => {
             />
             {errors['Company ID'] && (
               <span>
-                {errors['Company ID'].type === 'required' ? 'Company ID is required' : 'Company ID must be between 1 and 99999'}
+                {errors['Company ID'].type === 'required'
+                  ? 'Company ID jest wymagane'
+                  : 'Company ID musi mieścić się w przedziale 1-99999'}
               </span>
             )}
             <input
@@ -142,7 +118,9 @@ const ModalAdding = ({ addClient, closeModal }) => {
             />
             {errors['Client ID'] && (
               <span>
-                {errors['Client ID'].type === 'required' ? 'Client ID is required' : 'Client ID must be between 1 and 99999'}
+                {errors['Client ID'].type === 'required'
+                  ? 'Client ID jest wymagane'
+                  : 'Client ID musi mieścić się w przedziale 1-99999'}
               </span>
             )}
             <input
@@ -153,8 +131,8 @@ const ModalAdding = ({ addClient, closeModal }) => {
             {errors['Company Name'] && (
               <span>
                 {errors['Company Name'].type === 'required'
-                  ? 'Company Name is required'
-                  : 'Company Name must be between 3 and 60 characters'}
+                  ? 'Company Name jest wymagane'
+                  : 'Company Name musi mieścić się w przedziale 3-60 znaków'}
               </span>
             )}
             <input
@@ -165,8 +143,8 @@ const ModalAdding = ({ addClient, closeModal }) => {
             {errors['Bought Copies'] && (
               <span>
                 {errors['Bought Copies'].type === 'required'
-                  ? 'Bought Copies is required'
-                  : 'Bought Copies must be between 0 and 99999'}
+                  ? 'Bought Copies jest wymagane'
+                  : 'Bought Copies musi mieścić się w przedziale 0-99999'}
               </span>
             )}
             <button>Add client</button>

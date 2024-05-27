@@ -8,17 +8,17 @@ const ErrorPage = () => {
       <>
         <>
           <img src='https://picsum.photos/250/120' alt='logo' />
-          <h1>Page not found.</h1>
+          <h1>Nie znaleziono strony.</h1>
           <nav>
             <ul>
               <li>
-                <NavLink to='/clientInfoPage'>Client Info</NavLink>
+                <NavLink to='/clientInfoPage'>O klientach</NavLink>
               </li>
               <li>
-                <NavLink to='/userInfoPage'>User Info</NavLink>
+                <NavLink to='/userInfoPage'>Użytkownicy</NavLink>
               </li>
               <li>
-                <NavLink to='/login'>Login</NavLink>
+                <NavLink to='/login'>Zaloguj się</NavLink>
               </li>
             </ul>
           </nav>
