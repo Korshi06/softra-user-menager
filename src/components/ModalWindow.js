@@ -42,7 +42,7 @@ const ModalEdit = ({ closeModal, gridRefClients, editClient }) => {
     const { name, value } = e.target
     if (name === 'companyName') {
       setCompanyName(value)
-    } else {
+    } else if (name === 'boughtCopies') {
       setBoughtCopies(value)
     }
   }
@@ -55,11 +55,11 @@ const ModalEdit = ({ closeModal, gridRefClients, editClient }) => {
           <form onSubmit={editClient}>
             <label>
               Company Name
-              <input type='text' placeholder='Company Name' value={companyName} onChange={handleChange} />
+              <input type='text' placeholder='Company Name' name='companyName' value={companyName} onChange={handleChange} />
             </label>
             <label>
               Bought copies:
-              <input type='number' placeholder='Bought Copies' value={boughtCopies} onChange={handleChange} />
+              <input type='number' placeholder='Bought Copies' name='boughtCopies' value={boughtCopies} onChange={handleChange} />
             </label>
             <br />
             <button>Save</button>
