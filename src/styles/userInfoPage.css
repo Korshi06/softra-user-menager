@@ -11,6 +11,8 @@
   color: black;
   width: 100%;
   box-sizing: border-box;
+  transition: padding 0.3s ease; /* Add transition for padding */
+  width: 33%;
 }
 
 /* Responsive adjustments */
@@ -21,9 +23,10 @@
   }
 }
 
-@media (min-width: 900px) {
+@media (max-width: 767px) {
   .infoBlock {
     padding: 2rem;
     margin: 2rem;
+    min-width: 30%;
   }
 }
