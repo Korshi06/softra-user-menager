@@ -7,28 +7,28 @@ import '../styles/footer.css'
 
 const Footer = () => {
   return (
-    <footer className=' bg-dark text-white  text-center'>
+    <footer className='text-center'>
       <Container>
         <Row>
           <Col md='10'>
             <ul className='list-unstyled'>
               <li>
-                <NavLink to='/' className='text-white'>
+                <NavLink to='/' className='text-black'>
                   Home
                 </NavLink>
               </li>
               <li>
-                <NavLink to='/login' className='text-white'>
+                <NavLink to='/login' className='text-black'>
                   Login
                 </NavLink>
               </li>
               <li>
-                <NavLink to='/clientInfoPage' className='text-white'>
+                <NavLink to='/clientInfoPage' className='text-black'>
                   Client Info
                 </NavLink>
               </li>
               <li>
-                <NavLink to='/userInfoPage' className='text-white'>
+                <NavLink to='/userInfoPage' className='text-black'>
                   User Info
                 </NavLink>
               </li>

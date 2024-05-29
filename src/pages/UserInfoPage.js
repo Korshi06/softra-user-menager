@@ -7,7 +7,9 @@ import { store } from '../store/UserLoggedStore'
 import '../styles/userInfoPage.css'
 import CompanyInfo from '../components/CompanyInfo'
 import { clientsUsersTable } from '../data/clientsUsersTable'
-//import ActionButtons from '../components/ActionButtons'
+import { Provider } from 'react-redux'
+import { dataStore } from '../store/DataStore'
+import ActionButtons from '../components/ActionButtons'
 
 //All users of the currently logged in company will be shown here
 
@@ -28,20 +30,28 @@ const UserInfoPage = () => {
     }
   }, [isAdmin, isUserLoggedIn, companyId])
 
+  const gridRefUsers = React.useRef()
+
   return (
     <div className='center'>
       {isUserLoggedIn || isAdmin ? (
         <>
           <h1>User info</h1>
-          <CompanyInfo clientsUsersTable={filteredUsers} />
-          <UserTable clientsUsersTable={filteredUsers} />
-          {/* <ActionButtons /> */}
+          <Provider store={dataStore}>
+            <CompanyInfo clientsUsersTable={filteredUsers} />
+            <UserTable clientsUsersTable={filteredUsers} />
+            <ActionButtons gridRefUsers={gridRefUsers} clientPage={false} />
+          </Provider>
         </>
       ) : (
         <div className='center'>
           <h1>UserInfoPage</h1>
           <h3>Log in to access this page</h3>
-          <NavLink to='/login'>Log in page</NavLink>
+          <ul>
+            <li id='btnSlimmer'>
+              <NavLink to='/login'>Log in</NavLink>
+            </li>
+          </ul>
         </div>
       )}
     </div>

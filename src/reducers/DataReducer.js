@@ -1,8 +1,10 @@
-import { UPDATE_DATA } from '../actions/DataAction'
+import { UPDATE_DATA, UPDATE_USER } from '../actions/DataAction'
 import { aboutCompany } from '../data/aboutCompany'
+import { clientsUsersTable } from '../data/clientsUsersTable'
 
 const initialState = {
   aboutCompany: aboutCompany,
+  aboutUser: clientsUsersTable,
 }
 
 const DataReducer = (state = initialState, action) => {
@@ -11,6 +13,11 @@ const DataReducer = (state = initialState, action) => {
       return {
         ...state,
         aboutCompany: action.aboutCompany,
+      }
+    case UPDATE_USER:
+      return {
+        ...state,
+        aboutUser: action.aboutUser,
       }
 
     default:

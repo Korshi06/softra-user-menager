@@ -4,6 +4,7 @@ export const clientsUsersTableNames = [
   { field: 'NazwaUrządzenia', filter: true },
   { field: 'Dział', filter: true },
   { field: 'NrTelefonu', filter: true },
+  { field: 'Wersja aplikacji', filter: true },
   { field: 'ostatniaAktywność', filter: true },
   { field: 'Aktywny', filter: true },
 ]

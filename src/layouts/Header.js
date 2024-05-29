@@ -4,35 +4,35 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import '../styles/header.css'
+import Logo from '../components/Logo'
 
 const Header = () => {
   return (
-    <header className='header bg-dark p-4'>
+    <header className='header p-4'>
       <Container>
         <Row>
           <Col md='4'>
-            <img src='https://picsum.photos/250/120' alt='logo' />
+            <Logo />
           </Col>
-
           <Col md='8'>
             <ul className='nav justify-content-center'>
               <li className='nav-item'>
-                <NavLink to='/' className='nav-link text-white'>
+                <NavLink to='/' className='nav-link text-black'>
                   Home
                 </NavLink>
               </li>
               <li className='nav-item'>
-                <NavLink to='/login' className='nav-link text-white'>
+                <NavLink to='/login' className='nav-link text-black'>
                   Login
                 </NavLink>
               </li>
               <li className='nav-item'>
-                <NavLink to='/clientInfoPage' className='nav-link text-white'>
+                <NavLink to='/clientInfoPage' className='nav-link text-black'>
                   Client Info
                 </NavLink>
               </li>
               <li className='nav-item'>
-                <NavLink to='/userInfoPage' className='nav-link text-white'>
+                <NavLink to='/userInfoPage' className='nav-link text-black'>
                   User Info
                 </NavLink>
               </li>

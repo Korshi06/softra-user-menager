@@ -1,10 +1,29 @@
+/* Base styles for the info block */
 .infoBlock {
   display: flex;
+  text-align: center;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 20px;
-  padding: 20px;
-  background-color: rgb(218, 211, 211);
+  margin: 1rem;
+  padding: 1rem;
+  background-color: #b7c7d6;
+  color: black;
   width: 100%;
+  box-sizing: border-box;
+}
+
+/* Responsive adjustments */
+@media (min-width: 600px) {
+  .infoBlock {
+    padding: 1.5rem;
+    margin: 1.5rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .infoBlock {
+    padding: 2rem;
+    margin: 2rem;
+  }
 }

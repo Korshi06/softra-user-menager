@@ -1,5 +1,5 @@
 .page {
-  min-height: 76vh;
+  min-height: 75vh;
   padding: 2.5vh;
 }
 
@@ -9,5 +9,21 @@
   align-items: center;
   justify-content: center;
   margin: auto;
-  min-height: 76vh;
+  min-height: 75vh;
+}
+
+.page .btnSlimmer {
+  width: 10rem;
+  height: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.875rem;
+  background-color: #002c5d;
+  color: white;
+}
+
+.page .btnSlimmer:hover {
+  background-color: #b7c7d6;
+  color: black;
 }

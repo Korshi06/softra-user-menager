@@ -3,10 +3,10 @@ import { useState } from 'react'
 import ModalWindow from './ModalWindow'
 import loginInfoTable from '../data/loginInfoTable'
 import { dataStore } from '../store/DataStore'
-import { UPDATE_DATA } from '../actions/DataAction'
+import { UPDATE_DATA, UPDATE_USER } from '../actions/DataAction'
 import '../styles/actionButtons.css'
 
-const ActionButtons = ({ gridRefClients }) => {
+const ActionButtons = ({ gridRefClients, gridRefUsers, clientPage }) => {
   const [openModal, setOpenModal] = useState(false)
   const [editing, setEditing] = useState(false)
   const [adding, setAdding] = useState(false)
@@ -42,6 +42,37 @@ const ActionButtons = ({ gridRefClients }) => {
     setEditing(false)
   }
 
+  const editUser = (e) => {
+    e.preventDefault()
+    const userId = gridRefUsers.current.api.getSelectedRows()[0].idUżytkownika
+
+    const editedUser = {
+      ...gridRefUsers.current.api.getSelectedRows()[0],
+      idUżytkownika: e.target[0].value,
+      IdFirmy: e.target[1].value,
+      NrIMEI: e.target[2].value,
+      NazwaUrządzenia: e.target[3].value,
+      Dział: e.target[4].value,
+      NrTelefonu: e.target[5].value,
+      ostatnieAktywność: e.target[6].value,
+      Aktywny: e.target[7].value,
+    }
+
+    const editedTable = dataStore.getState().DataReducer.aboutUser.map((item) => {
+      if (item.idUżytkownika === userId) {
+        return editedUser
+      }
+      return item
+    })
+
+    dataStore.dispatch({ type: UPDATE_USER, aboutUser: editedTable })
+
+    gridRefUsers.current.api.setGridOption('rowData', dataStore.getState().DataReducer.aboutUser)
+
+    setOpenModal(false)
+    setEditing(false)
+  }
+
   const handleDeleteBtn = () => {
     setOpenModal(true)
     setEditing(false)
@@ -57,12 +88,14 @@ const ActionButtons = ({ gridRefClients }) => {
   const deleteFromClients = () => {
     const clientId = gridRefClients.current.api.getSelectedRows()[0].clientId
 
-    dataStore.getState().DataReducer.aboutCompany.filter((item) => {
+    const editedTable = dataStore.getState().DataReducer.aboutCompany.slice()
+
+    editedTable.filter((item) => {
       if (item.clientId === clientId) {
-        const index = dataStore.getState().DataReducer.aboutCompany.indexOf(item)
-        dataStore.getState().DataReducer.aboutCompany.splice(index, 1)
+        const index = editedTable.indexOf(item)
+        editedTable.splice(index, 1)
       }
-      return dataStore.getState().DataReducer.aboutCompany
+      return editedTable
     })
 
     loginInfoTable.filter((item) => {
@@ -73,7 +106,28 @@ const ActionButtons = ({ gridRefClients }) => {
       return loginInfoTable
     })
 
+    dataStore.dispatch({ type: UPDATE_DATA, aboutCompany: editedTable })
+
     gridRefClients.current.api.setGridOption('rowData', dataStore.getState().DataReducer.aboutCompany)
+    setOpenModal(false)
+  }
+
+  const deleteFromUsers = () => {
+    const clientId = gridRefUsers.current.api.getSelectedRows()[0].idUżytkownika
+
+    const editedTable = dataStore.getState().DataReducer.aboutUser.slice()
+
+    editedTable.filter((item) => {
+      if (item.idUżytkownika === clientId) {
+        const index = editedTable.indexOf(item)
+        editedTable.splice(index, 1)
+      }
+      return editedTable
+    })
+
+    dataStore.dispatch({ type: UPDATE_DATA, aboutCompany: editedTable })
+
+    gridRefUsers.current.api.setGridOption('rowData', editedTable)
     setOpenModal(false)
   }
 
@@ -85,39 +139,65 @@ const ActionButtons = ({ gridRefClients }) => {
 
   const addClient = (e) => {
     const newClient = {
-      companyName: e.companyName,
-      boughtCopies: Number(e.boughtCopies),
-      companyId: Number(e.companyId),
-      clientId: Number(e.clientId),
+      companyName: e['Company Name'],
+      boughtCopies: Number(e['Bought Copies']),
+      companyId: Number(e['Company ID']),
+      clientId: Number(e['Client ID']),
     }
 
-    dataStore.getState().DataReducer.aboutCompany.push(newClient)
+    const editedTable = dataStore.getState().DataReducer.aboutCompany.slice()
+    editedTable.push(newClient)
+    dataStore.dispatch({ type: UPDATE_DATA, aboutCompany: editedTable })
     gridRefClients.current.api.setGridOption('rowData', dataStore.getState().DataReducer.aboutCompany)
+    setOpenModal(false)
+  }
+
+  const addUser = (e) => {
+    const newUser = {
+      idUżytkownika: Number(e['ID Użytkownika']),
+      IdFirmy: Number(e['ID Firmy']),
+      NrIMEI: Number(e['Nr IMEI']),
+      NazwaUrządzenia: e['Nazwa Urządzenia'],
+      Dział: e['Dział'],
+      NrTelefonu: e['Nr Telefonu'],
+      ['Ostatnie Aktywność']: e['Ostatnie Aktywność'],
+      ostatnieAktywność: e['Ostatnie Aktywność'],
+      Aktywny: e['Aktywny'],
+    }
+
+    console.log(newUser)
+    dataStore.getState().DataReducer.aboutUser.push(newUser)
+    gridRefUsers.current.api.setGridOption('rowData', dataStore.getState().DataReducer.aboutUser)
+
     setOpenModal(false)
   }
 
   return (
     <>
       <div className='buttonWrapper'>
-        <button onClick={handleEditBtn} className='actionButton btn btn-primary'>
+        <button onClick={handleEditBtn} className='actionButton'>
           Edit
         </button>
-        <button onClick={handleAddBtn} className='actionButton btn btn-primary'>
+        <button onClick={handleAddBtn} className='actionButton'>
           Add
         </button>
-        <button onClick={handleDeleteBtn} className='btn actionButton btn-danger'>
+        <button onClick={handleDeleteBtn} id='deleteBtn' className='actionButton'>
           Delete
         </button>
       </div>
       <ModalWindow
         openModal={openModal}
         deleteFromClients={deleteFromClients}
-        gridRefClients={gridRefClients}
+        gridRef={gridRefClients}
         editing={editing}
         closeModal={closeModal}
         editClient={editClient}
         adding={adding}
         addClient={addClient}
+        clientPage={true}
+        editUser={editUser}
+        deleteFromUsers={deleteFromUsers}
+        addUser={addUser}
       />
     </>
   )

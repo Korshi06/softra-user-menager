@@ -1,23 +1,71 @@
-/* src/styles/header.css */
 header {
-  background-color: #343a40;
-  color: white;
-  height: 15vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background-color: #b7c7d6;
+  color: black;
+  min-height: 15vh;
   width: 100%;
+  padding: 1rem;
+  transition: padding 0.3s ease; /* Add transition for padding */
 }
 
-header li {
-  color: white !important;
-  font-size: 1.75rem; /* Larger text */
+.header .nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.header .nav-item {
+  margin: 0.5rem 1rem;
+}
+
+.header .nav-link {
+  font-size: 1.8rem;
   transition: color 0.3s ease, font-size 0.3s ease;
-  line-height: 2rem;
+  color: black;
 }
 
-header li:hover {
+.header .nav-link:hover {
   text-decoration: underline red;
-  color: #f8d7da !important; /* Change color on hover */
-  font-size: 2rem; /* Slightly larger text on hover */
+  font-size: 2rem;
+}
+
+@media (max-width: 767px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+    min-height: 24rem;
+    max-height: 24rem;
+  }
+
+  .header .nav {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .header .nav-item {
+    margin: 0.1rem 0;
+    text-align: center;
+    width: 100%;
+    border-bottom: 1px solid #000;
+    padding: 0.3rem 0;
+  }
+
+  .header .nav-item:last-child {
+    border-bottom: none;
+  }
+
+  .header .nav-link {
+    font-size: 1.4rem;
+  }
+
+  .header .nav-link:hover {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 1198px) and (min-width: 768px) {
+  header {
+    max-height: 13rem;
+    min-height: 13rem;
+  }
 }

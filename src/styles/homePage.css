@@ -1,44 +1,81 @@
+/* Base styles for the page */
 .page {
   background-color: #f8f9fa;
+  padding: 1rem;
 }
 
+/* List item styles */
 .page li {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  padding: 0.75rem;
   background-color: #2d2d2e;
-  border-radius: 30px;
+  border-radius: 20px;
   color: white;
-  margin: 30px;
-  font-size: 30px;
+  margin: 1.5rem;
+  font-size: 1.25rem;
+  transition: background-color 0.3s, color 0.3s;
 }
 
+/* Unordered list styles */
 .page ul {
   list-style-type: none;
   padding: 0;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: center;
 }
 
+/* Anchor styles */
 .page a {
   color: white;
   text-decoration: none;
   cursor: pointer;
 }
 
+/* Hover effects for list items and anchors */
 .page li:hover {
-  background-color: #656568;
+  background-color: #b7c7d6;
 }
 
 .page li:hover a {
-  color: #2d2d2e;
+  color: black;
 }
 
-.page #btnHome {
-  width: 220px;
-  height: 50px;
+/* Button styles */
+.page .btnHome {
+  width: 20rem;
+  height: 2.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 0.875rem;
+  background-color: #002c5d;
+  color: black;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Responsive adjustments */
+@media (min-width: 600px) {
+  .page li {
+    font-size: 1.5rem;
+    margin: 1rem;
+    padding: 1rem;
+  }
+
+  .page ul {
+    flex-direction: row;
+  }
+}
+
+@media (min-width: 900px) {
+  .page li {
+    font-size: 1.75rem;
+    margin: 1.5rem;
+    padding: 1.25rem;
+  }
 }

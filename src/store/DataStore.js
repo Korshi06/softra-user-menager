@@ -7,7 +7,5 @@ const dataStore = configureStore({
     DataReducer,
   },
 })
-// import { createStore } from 'redux'
-// export const store = createStore(UserLoginReducer)
 
 export { dataStore }

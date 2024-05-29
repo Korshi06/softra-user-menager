@@ -26,7 +26,11 @@ const ClientInfoPage = () => {
         <div className='center'>
           <h1>ClientInfoPage</h1>
           <h3>Log in as an Admin to access this page</h3>
-          <NavLink to='/login'>Log in page</NavLink>
+          <ul>
+            <li id='btnSlimmer'>
+              <NavLink to='/login'>Log in</NavLink>
+            </li>
+          </ul>
         </div>
       )}
     </>

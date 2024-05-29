@@ -1,18 +1,27 @@
 footer {
-  height: 4vh;
+  min-height: 5vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0;
+  line-height: 1.5;
+  padding: 0;
+  width: 100%;
+  background-color: #b7c7d6;
 }
 
 footer li {
-  color: white !important;
-  font-size: 1.45rem;
+  color: black !important;
+  font-size: 1.8rem;
   transition: color 0.3s ease, font-size 0.3s ease;
-  line-height: 1.6rem;
   margin: 0 1rem;
   text-decoration: none;
+  margin-top: 1vh;
+}
+
+footer p {
+  color: black;
+  font-size: 1.5rem;
+  margin-top: 1vh;
 }
 
 footer li:hover {
@@ -24,4 +33,26 @@ footer ul {
   padding: 0;
   display: flex;
   flex-direction: row;
+}
+
+@media (max-width: 768px) {
+  footer li,
+  footer p {
+    font-size: 1.4rem;
+  }
+
+  footer li:hover {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  footer li,
+  footer p {
+    font-size: 1.2rem;
+  }
+
+  footer li:hover {
+    font-size: 1.3rem;
+  }
 }

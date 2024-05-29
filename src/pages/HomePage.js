@@ -2,6 +2,7 @@ import React from 'react'
 import { store } from '../store/UserLoggedStore'
 import { NavLink } from 'react-router-dom'
 import '../styles/homePage.css'
+import Logo from '../components/Logo'
 
 const HomePage = () => {
   const isUserLoggedIn = store.getState().UserLoginReducer.isUserLoggedIn
@@ -11,13 +12,13 @@ const HomePage = () => {
     <div className='center'>
       {isUserLoggedIn || isAdmin ? (
         <>
-          <img src='https://picsum.photos/250/120' alt='logo' />
+          <Logo />
           <nav>
             <ul>
-              <li>
+              <li className='btnHome'>
                 <NavLink to='/clientInfoPage'>Client Info</NavLink>
               </li>
-              <li>
+              <li className='btnHome'>
                 <NavLink to='/userInfoPage'>User Info</NavLink>
               </li>
             </ul>
@@ -25,10 +26,10 @@ const HomePage = () => {
         </>
       ) : (
         <>
-          <img src='https://picsum.photos/250/120' alt='logo' />
+          <Logo />
           <nav>
             <ul>
-              <li id='btnHome'>
+              <li className='btnHome'>
                 <NavLink to='/login'>Log in</NavLink>
               </li>
             </ul>

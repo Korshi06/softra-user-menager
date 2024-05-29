@@ -1,23 +1,24 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import '../styles/errorPage.css'
+import Logo from '../components/Logo'
 
 const ErrorPage = () => {
   return (
     <div className='center'>
       <>
         <>
-          <img src='https://picsum.photos/250/120' alt='logo' />
+          <Logo />
           <h1>Page not found.</h1>
           <nav>
             <ul>
-              <li>
+              <li className='btnSlimmer'>
                 <NavLink to='/clientInfoPage'>Client Info</NavLink>
               </li>
-              <li>
+              <li className='btnSlimmer'>
                 <NavLink to='/userInfoPage'>User Info</NavLink>
               </li>
-              <li>
+              <li className='btnSlimmer'>
                 <NavLink to='/login'>Login</NavLink>
               </li>
             </ul>

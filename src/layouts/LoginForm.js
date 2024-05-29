@@ -5,6 +5,7 @@ import { LOGIN_USER, LOGOUT_USER } from '../actions/UserLoginAction'
 import loginInfoTable from '../data/loginInfoTable'
 import { aboutCompany } from '../data/aboutCompany'
 import '../styles/LoginForm.css'
+import Logo from '../components/Logo'
 
 const LoginForm = () => {
   const [reRender, setReRender] = useState(false)
@@ -46,6 +47,7 @@ const LoginForm = () => {
       setReRender(!reRender)
       setErrorState('')
     } else {
+      setErrorState('Incorrect login or password')
       store.dispatch({ type: LOGOUT_USER })
       setReRender(!reRender)
     }
@@ -54,12 +56,13 @@ const LoginForm = () => {
   return (
     <div className='form center'>
       <form onSubmit={handleLogInBtn}>
+        <Logo />
         {!isUserLoggedIn ? (
           <>
             <h3>Hello! Log in here</h3>
             <input type='text' name='login' placeholder='login' value={login} onChange={inputChange} /> <br />
             <input type='password' name='password' placeholder='password' value={password} onChange={inputChange} /> <br />
-            <p id='errorP'>{errorState}</p>
+            <p id='errorP'>{errorState} </p>
             <button>Log in</button>
           </>
         ) : (
