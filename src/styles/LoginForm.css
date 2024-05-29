@@ -33,6 +33,7 @@
   color: #fff;
   font-size: 1.2em;
   cursor: pointer;
+  margin: 10px 0;
 }
 
 .form button:hover {

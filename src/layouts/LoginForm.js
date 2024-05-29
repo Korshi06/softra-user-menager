@@ -66,10 +66,10 @@ const LoginForm = () => {
             <button>Log in</button>
           </>
         ) : (
-          <button>Log out</button>
+          <button>Wyloguj</button>
         )}
       </form>
-      {isUserLoggedIn ? <p>Logged in</p> : <p>Logged out</p>}
+      {isUserLoggedIn ? <p>Zalogowano</p> : <p>Wylogowano</p>}
     </div>
   )
 }

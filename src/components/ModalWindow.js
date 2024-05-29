@@ -28,7 +28,7 @@ const ModalWindow = ({
     return (
       <div className='modalOverlay'>
         <div className='modalWindow'>
-          <h2>Please select a row to edit</h2>
+          <h2>Wybierz wiersz by go edytować.</h2>
           <button onClick={closeModal}>Close</button>
         </div>
       </div>
@@ -71,17 +71,17 @@ const ModalEditClient = ({ closeModal, gridRef, editClient }) => {
         <div>
           <form onSubmit={editClient}>
             <label>
-              Company Name
+              Nazwa firmy:
               <input type='text' placeholder='Company Name' name='companyName' value={companyName} onChange={handleChange} />
             </label>
             <label>
-              Bought copies:
+              Wykupione kopie:
               <input type='number' placeholder='Bought Copies' name='boughtCopies' value={boughtCopies} onChange={handleChange} />
             </label>
             <br />
-            <button>Save</button>
+            <button>Zapisz</button>
           </form>
-          <button onClick={closeModal}>Cancel</button>
+          <button onClick={closeModal}>Anuluj</button>
         </div>
       </div>
     </div>

@@ -17,7 +17,7 @@ const ClientInfoPage = () => {
       {admin ? (
         <div className='center'>
           <Provider store={dataStore}>
-            <h1>Client info</h1>
+            <h1>O klientach</h1>
             <ClientTable gridRefClients={gridRefClients} />
             <ActionButtons gridRefClients={gridRefClients} />
           </Provider>
