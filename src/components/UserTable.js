@@ -16,7 +16,7 @@ const UserTable = (props) => {
           columnDefs={clientsUsersTableNames}
           rowData={props.clientsUsersTable}
           pagination={true}
-          paginationPageSize={50}
+          paginationPageSize={30}
         />
       </div>
     </Container>

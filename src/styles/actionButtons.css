@@ -1,12 +1,3 @@
-/* Button wrapper styles */
-.buttonWrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 80%;
-  margin: 0 auto;
-}
-
 /* Action button styles */
 .actionButton {
   padding: 0.5rem;
@@ -33,7 +24,7 @@
 }
 
 /* Delete button specific styles */
-#deleteBtn {
+.deleteBtn {
   background-color: #8d2e2e;
   color: white;
 }

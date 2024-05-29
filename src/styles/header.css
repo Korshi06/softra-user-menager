@@ -3,7 +3,7 @@ header {
   color: black;
   min-height: 15vh;
   width: 100%;
-  padding: 1rem;
+
   transition: padding 0.3s ease; /* Add transition for padding */
 }
 

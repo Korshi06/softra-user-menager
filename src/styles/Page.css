@@ -13,7 +13,7 @@
 }
 
 .page .btnSlimmer {
-  width: 10rem;
+  width: 16rem;
   height: 2.5rem;
   display: flex;
   justify-content: center;
@@ -26,4 +26,12 @@
 .page .btnSlimmer:hover {
   background-color: #b7c7d6;
   color: black;
+}
+
+.buttonWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
 }

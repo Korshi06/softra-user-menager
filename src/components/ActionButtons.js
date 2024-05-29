@@ -19,7 +19,7 @@ const ActionButtons = ({ gridRefClients, gridRefUsers, clientPage }) => {
 
   const editClient = (e) => {
     e.preventDefault()
-    const companyId = gridRefClients.current.api.getSelectedRows()[0].companyId
+    const IdWlascicielaFirmy = gridRefClients.current.api.getSelectedRows()[0].IdWlascicielaFirmy
 
     const editedClient = {
       ...gridRefClients.current.api.getSelectedRows()[0],
@@ -28,7 +28,7 @@ const ActionButtons = ({ gridRefClients, gridRefUsers, clientPage }) => {
     }
 
     const editedTable = dataStore.getState().DataReducer.aboutCompany.map((item) => {
-      if (item.companyId === companyId) {
+      if (item.IdWlascicielaFirmy === IdWlascicielaFirmy) {
         return editedClient
       }
       return item
@@ -44,12 +44,11 @@ const ActionButtons = ({ gridRefClients, gridRefUsers, clientPage }) => {
 
   const editUser = (e) => {
     e.preventDefault()
-    const userId = gridRefUsers.current.api.getSelectedRows()[0].idUżytkownika
+    const IdWlascicielaFirmy = gridRefUsers.current.api.getSelectedRows()[0].IdWlascicielaFirmy
 
     const editedUser = {
       ...gridRefUsers.current.api.getSelectedRows()[0],
-      idUżytkownika: e.target[0].value,
-      IdFirmy: e.target[1].value,
+      IdWlascicielaFirmy: e.target[1].value,
       NrIMEI: e.target[2].value,
       NazwaUrządzenia: e.target[3].value,
       Dział: e.target[4].value,
@@ -59,7 +58,7 @@ const ActionButtons = ({ gridRefClients, gridRefUsers, clientPage }) => {
     }
 
     const editedTable = dataStore.getState().DataReducer.aboutUser.map((item) => {
-      if (item.idUżytkownika === userId) {
+      if (item.IdWlascicielaFirmy === IdWlascicielaFirmy) {
         return editedUser
       }
       return item
@@ -86,12 +85,12 @@ const ActionButtons = ({ gridRefClients, gridRefUsers, clientPage }) => {
   }
 
   const deleteFromClients = () => {
-    const clientId = gridRefClients.current.api.getSelectedRows()[0].clientId
+    const IdWlascicielaFirmy = gridRefClients.current.api.getSelectedRows()[0].IdWlascicielaFirmy
 
     const editedTable = dataStore.getState().DataReducer.aboutCompany.slice()
 
     editedTable.filter((item) => {
-      if (item.clientId === clientId) {
+      if (item.IdWlascicielaFirmy === IdWlascicielaFirmy) {
         const index = editedTable.indexOf(item)
         editedTable.splice(index, 1)
       }
@@ -99,7 +98,7 @@ const ActionButtons = ({ gridRefClients, gridRefUsers, clientPage }) => {
     })
 
     loginInfoTable.filter((item) => {
-      if (item.id === clientId) {
+      if (item.id === IdWlascicielaFirmy) {
         const index = loginInfoTable.indexOf(item)
         loginInfoTable.splice(index, 1)
       }
@@ -113,12 +112,12 @@ const ActionButtons = ({ gridRefClients, gridRefUsers, clientPage }) => {
   }
 
   const deleteFromUsers = () => {
-    const clientId = gridRefUsers.current.api.getSelectedRows()[0].idUżytkownika
+    const IdWlascicielaFirmy = gridRefUsers.current.api.getSelectedRows()[0].IdWlascicielaFirmy
 
     const editedTable = dataStore.getState().DataReducer.aboutUser.slice()
 
     editedTable.filter((item) => {
-      if (item.idUżytkownika === clientId) {
+      if (item.IdWlascicielaFirmy === IdWlascicielaFirmy) {
         const index = editedTable.indexOf(item)
         editedTable.splice(index, 1)
       }
@@ -138,14 +137,15 @@ const ActionButtons = ({ gridRefClients, gridRefUsers, clientPage }) => {
   }
 
   const addClient = (e) => {
+    const editedTable = dataStore.getState().DataReducer.aboutCompany.slice()
+    const newId = editedTable[editedTable.length - 1].IdWlascicielaFirmy + 1
+
     const newClient = {
       companyName: e['Company Name'],
       boughtCopies: Number(e['Bought Copies']),
-      companyId: Number(e['Company ID']),
-      clientId: Number(e['Client ID']),
+      IdWlascicielaFirmy: Number(newId),
     }
 
-    const editedTable = dataStore.getState().DataReducer.aboutCompany.slice()
     editedTable.push(newClient)
     dataStore.dispatch({ type: UPDATE_DATA, aboutCompany: editedTable })
     gridRefClients.current.api.setGridOption('rowData', dataStore.getState().DataReducer.aboutCompany)
@@ -154,8 +154,7 @@ const ActionButtons = ({ gridRefClients, gridRefUsers, clientPage }) => {
 
   const addUser = (e) => {
     const newUser = {
-      idUżytkownika: Number(e['ID Użytkownika']),
-      IdFirmy: Number(e['ID Firmy']),
+      IdWlascicielaFirmy: Number(e['IdWlascicielaFirmy']),
       NrIMEI: Number(e['Nr IMEI']),
       NazwaUrządzenia: e['Nazwa Urządzenia'],
       Dział: e['Dział'],
@@ -174,17 +173,16 @@ const ActionButtons = ({ gridRefClients, gridRefUsers, clientPage }) => {
 
   return (
     <>
-      <div className='buttonWrapper'>
-        <button onClick={handleEditBtn} className='actionButton'>
-          Edytuj
-        </button>
-        <button onClick={handleAddBtn} className='actionButton'>
-          Add
-        </button>
-        <button onClick={handleDeleteBtn} className='actionButton' id='deleteBtn'>
-          Delete
-        </button>
-      </div>
+      <button onClick={handleEditBtn} className='actionButton'>
+        Edytuj
+      </button>
+      <button onClick={handleAddBtn} className='actionButton'>
+        Add
+      </button>
+      <button onClick={handleDeleteBtn} className='actionButton deleteBtn'>
+        Delete
+      </button>
+
       <ModalWindow
         openModal={openModal}
         deleteFromClients={deleteFromClients}

@@ -103,11 +103,12 @@ const ModalEditUser = ({ closeModal, gridRef, editUser }) => {
         </h2>
         <div>
           <form onSubmit={handleSubmit(editUser)}>
-            <input type='number' placeholder='ID Użytkownika' {...register('idUżytkownika', { required: true, min: 1 })} />
-            {errors.idUżytkownika && <span>ID Użytkownika is required and must be greater than 0</span>}
-
-            <input type='number' placeholder='ID Firmy' {...register('IdFirmy', { required: true, min: 1 })} />
-            {errors.IdFirmy && <span>ID Firmy is required and must be greater than 0</span>}
+            <input
+              type='number'
+              placeholder='IdWlascicielaFirmy'
+              {...register('IdWlascicielaFirmy', { required: true, min: 1 })}
+            />
+            {errors.IdWlascicielaFirmy && <span>IdWlascicielaFirmy is required and must be greater than 0</span>}
 
             <input
               type='text'
@@ -232,26 +233,6 @@ const ModalAdding = ({ addClient, closeModal, addUser, clientPage }) => {
       return (
         <form onSubmit={handleSubmit(addClient)}>
           <input
-            type='number'
-            placeholder='Company ID'
-            {...register('Company ID', { required: true, max: 99999, min: 1, maxLength: 6 })}
-          />
-          {errors['Company ID'] && (
-            <span>
-              {errors['Company ID'].type === 'required' ? 'Company ID is required' : 'Company ID must be between 1 and 99999'}
-            </span>
-          )}
-          <input
-            type='number'
-            placeholder='Client ID'
-            {...register('Client ID', { required: true, max: 99999, min: 1, maxLength: 6 })}
-          />
-          {errors['Client ID'] && (
-            <span>
-              {errors['Client ID'].type === 'required' ? 'Client ID is required' : 'Client ID must be between 1 and 99999'}
-            </span>
-          )}
-          <input
             type='text'
             placeholder='Company Name'
             {...register('Company Name', { required: true, min: 3, maxLength: 60 })}
@@ -297,12 +278,14 @@ const ModalAdding = ({ addClient, closeModal, addUser, clientPage }) => {
           )}
           <input
             type='number'
-            placeholder='ID Firmy'
-            {...register('ID Firmy', { required: true, max: 99999, min: 1, maxLength: 6 })}
+            placeholder='IdWlascicielaFirmy'
+            {...register('IdWlascicielaFirmy', { required: true, max: 99999, min: 1, maxLength: 6 })}
           />
-          {errors['ID Firmy'] && (
+          {errors['IdWlascicielaFirmy'] && (
             <span>
-              {errors['ID Firmy'].type === 'required' ? 'ID Firmy is required' : 'ID Firmy must be between 1 and 99999'}
+              {errors['IdWlascicielaFirmy'].type === 'required'
+                ? 'IdWlascicielaFirmy is required'
+                : 'IdWlascicielaFirmy must be between 1 and 99999'}
             </span>
           )}
           <input type='text' placeholder='Użytkownik' {...register('Użytkownik', { required: true, min: 3, maxLength: 50 })} />
@@ -375,7 +358,6 @@ const ModalAdding = ({ addClient, closeModal, addUser, clientPage }) => {
         <h2>Adding</h2>
         <div>
           <Inputs />
-
           <button onClick={closeModal}>Cancel</button>
         </div>
       </div>

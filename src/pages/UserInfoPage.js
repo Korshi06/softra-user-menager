@@ -10,6 +10,7 @@ import { clientsUsersTable } from '../data/clientsUsersTable'
 import { Provider } from 'react-redux'
 import { dataStore } from '../store/DataStore'
 import ActionButtons from '../components/ActionButtons'
+import DeactiovationButton from '../components/DeactiovationButton'
 
 //All users of the currently logged in company will be shown here
 
@@ -19,16 +20,16 @@ const UserInfoPage = () => {
 
   const [filteredUsers, setFilteredUsers] = useState([])
 
-  const { companyId } = store.getState().UserLoginReducer.companyInfo
+  const { IdWlascicielaFirmy } = store.getState().UserLoginReducer.companyInfo
 
   useEffect(() => {
     if (!isAdmin && isUserLoggedIn) {
-      setFilteredUsers(clientsUsersTable.filter((user) => user.IdFirmy === companyId))
+      setFilteredUsers(clientsUsersTable.filter((user) => user.IdWlascicielaFirmy === IdWlascicielaFirmy))
     }
     if (isAdmin) {
       setFilteredUsers(clientsUsersTable)
     }
-  }, [isAdmin, isUserLoggedIn, companyId])
+  }, [isAdmin, isUserLoggedIn, IdWlascicielaFirmy])
 
   const gridRefUsers = React.useRef()
 
@@ -40,7 +41,10 @@ const UserInfoPage = () => {
           <Provider store={dataStore}>
             <CompanyInfo clientsUsersTable={filteredUsers} />
             <UserTable clientsUsersTable={filteredUsers} />
-            <ActionButtons gridRefUsers={gridRefUsers} clientPage={false} />
+            <div className='buttonWrapper'>
+              <ActionButtons gridRefUsers={gridRefUsers} clientPage={false} />
+              <DeactiovationButton gridRefUsers={gridRefUsers} />
+            </div>
           </Provider>
         </>
       ) : (
@@ -48,7 +52,7 @@ const UserInfoPage = () => {
           <h1>UserInfoPage</h1>
           <h3>Log in to access this page</h3>
           <ul>
-            <li id='btnSlimmer'>
+            <li className='btnSlimmer'>
               <NavLink to='/login'>Log in</NavLink>
             </li>
           </ul>

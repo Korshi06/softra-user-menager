@@ -11,8 +11,7 @@ export const clientsUsersTableNames = [
 
 export const clientsUsersTable = [
   {
-    idUżytkownika: 1,
-    IdFirmy: 17,
+    IdWlascicielaFirmy: 17,
     Użytkownik: 'user1',
     NrIMEI: '123456789012',
     NazwaUrządzenia: 'Device1',
@@ -23,8 +22,7 @@ export const clientsUsersTable = [
     Aktywny: true,
   },
   {
-    idUżytkownika: 2,
-    IdFirmy: 3,
+    IdWlascicielaFirmy: 3,
     Użytkownik: 'user2',
     NrIMEI: '234567890123',
     NazwaUrządzenia: 'Device2',
@@ -35,8 +33,7 @@ export const clientsUsersTable = [
     Aktywny: false,
   },
   {
-    idUżytkownika: 3,
-    IdFirmy: 10,
+    IdWlascicielaFirmy: 10,
     Użytkownik: 'user3',
     NrIMEI: '345678901234',
     NazwaUrządzenia: 'Device3',
@@ -47,8 +44,7 @@ export const clientsUsersTable = [
     Aktywny: true,
   },
   {
-    idUżytkownika: 4,
-    IdFirmy: 14,
+    IdWlascicielaFirmy: 14,
     Użytkownik: 'user4',
     NrIMEI: '456789012345',
     NazwaUrządzenia: 'Device4',
@@ -59,8 +55,7 @@ export const clientsUsersTable = [
     Aktywny: true,
   },
   {
-    idUżytkownika: 5,
-    IdFirmy: 7,
+    IdWlascicielaFirmy: 7,
     Użytkownik: 'user5',
     NrIMEI: '567890123456',
     NazwaUrządzenia: 'Device5',
@@ -71,8 +66,7 @@ export const clientsUsersTable = [
     Aktywny: false,
   },
   {
-    idUżytkownika: 6,
-    IdFirmy: 19,
+    IdWlascicielaFirmy: 19,
     Użytkownik: 'user6',
     NrIMEI: '678901234567',
     NazwaUrządzenia: 'Device6',
@@ -83,8 +77,7 @@ export const clientsUsersTable = [
     Aktywny: true,
   },
   {
-    idUżytkownika: 7,
-    IdFirmy: 2,
+    IdWlascicielaFirmy: 2,
     Użytkownik: 'user7',
     NrIMEI: '789012345678',
     NazwaUrządzenia: 'Device7',
@@ -95,8 +88,7 @@ export const clientsUsersTable = [
     Aktywny: true,
   },
   {
-    idUżytkownika: 8,
-    IdFirmy: 13,
+    IdWlascicielaFirmy: 13,
     Użytkownik: 'user8',
     NrIMEI: '890123456789',
     NazwaUrządzenia: 'Device8',
@@ -107,8 +99,7 @@ export const clientsUsersTable = [
     Aktywny: false,
   },
   {
-    idUżytkownika: 9,
-    IdFirmy: 20,
+    IdWlascicielaFirmy: 20,
     Użytkownik: 'user9',
     NrIMEI: '901234567890',
     NazwaUrządzenia: 'Device9',
@@ -119,8 +110,7 @@ export const clientsUsersTable = [
     Aktywny: true,
   },
   {
-    idUżytkownika: 10,
-    IdFirmy: 1,
+    IdWlascicielaFirmy: 1,
     Użytkownik: 'user10',
     NrIMEI: '012345678901',
     NazwaUrządzenia: 'Device10',
@@ -131,8 +121,7 @@ export const clientsUsersTable = [
     Aktywny: true,
   },
   {
-    idUżytkownika: 11,
-    IdFirmy: 8,
+    IdWlascicielaFirmy: 8,
     Użytkownik: 'user11',
     NrIMEI: '123456789012',
     NazwaUrządzenia: 'Device11',
@@ -143,8 +132,7 @@ export const clientsUsersTable = [
     Aktywny: false,
   },
   {
-    idUżytkownika: 12,
-    IdFirmy: 15,
+    IdWlascicielaFirmy: 15,
     Użytkownik: 'user12',
     NrIMEI: '234567890123',
     NazwaUrządzenia: 'Device12',
@@ -155,8 +143,7 @@ export const clientsUsersTable = [
     Aktywny: true,
   },
   {
-    idUżytkownika: 13,
-    IdFirmy: 18,
+    IdWlascicielaFirmy: 18,
     Użytkownik: 'user13',
     NrIMEI: '345678901234',
     NazwaUrządzenia: 'Device13',
@@ -167,8 +154,7 @@ export const clientsUsersTable = [
     Aktywny: false,
   },
   {
-    idUżytkownika: 14,
-    IdFirmy: 11,
+    IdWlascicielaFirmy: 11,
     Użytkownik: 'user14',
     NrIMEI: '456789012345',
     NazwaUrządzenia: 'Device14',
@@ -180,8 +166,7 @@ export const clientsUsersTable = [
   },
 
   {
-    idUżytkownika: 15,
-    IdFirmy: 4,
+    IdWlascicielaFirmy: 4,
     Użytkownik: 'user15',
     NrIMEI: '567890123456',
     NazwaUrządzenia: 'Device15',
@@ -192,8 +177,7 @@ export const clientsUsersTable = [
     Aktywny: false,
   },
   {
-    idUżytkownika: 16,
-    IdFirmy: 16,
+    IdWlascicielaFirmy: 16,
     Użytkownik: 'user16',
     NrIMEI: '678901234567',
     NazwaUrządzenia: 'Device16',
@@ -204,8 +188,7 @@ export const clientsUsersTable = [
     Aktywny: true,
   },
   {
-    idUżytkownika: 17,
-    IdFirmy: 9,
+    IdWlascicielaFirmy: 9,
     Użytkownik: 'user17',
     NrIMEI: '789012345678',
     NazwaUrządzenia: 'Device17',
@@ -216,8 +199,7 @@ export const clientsUsersTable = [
     Aktywny: true,
   },
   {
-    idUżytkownika: 18,
-    IdFirmy: 2,
+    IdWlascicielaFirmy: 2,
     Użytkownik: 'user18',
     NrIMEI: '890123456789',
     NazwaUrządzenia: 'Device18',
@@ -228,8 +210,7 @@ export const clientsUsersTable = [
     Aktywny: false,
   },
   {
-    idUżytkownika: 19,
-    IdFirmy: 12,
+    IdWlascicielaFirmy: 12,
     Użytkownik: 'user19',
     NrIMEI: '901234567890',
     NazwaUrządzenia: 'Device19',
@@ -240,8 +221,7 @@ export const clientsUsersTable = [
     Aktywny: true,
   },
   {
-    idUżytkownika: 20,
-    IdFirmy: 1,
+    IdWlascicielaFirmy: 1,
     Użytkownik: 'user20',
     NrIMEI: '012345678901',
     NazwaUrządzenia: 'Device20',
@@ -252,8 +232,7 @@ export const clientsUsersTable = [
     Aktywny: true,
   },
   {
-    idUżytkownika: 21,
-    IdFirmy: 8,
+    IdWlascicielaFirmy: 8,
     Użytkownik: 'user21',
     NrIMEI: '123456789012',
     NazwaUrządzenia: 'Device21',
@@ -264,8 +243,7 @@ export const clientsUsersTable = [
     Aktywny: false,
   },
   {
-    idUżytkownika: 22,
-    IdFirmy: 15,
+    IdWlascicielaFirmy: 15,
     Użytkownik: 'user22',
     NrIMEI: '234567890123',
     NazwaUrządzenia: 'Device22',
@@ -276,8 +254,7 @@ export const clientsUsersTable = [
     Aktywny: true,
   },
   {
-    idUżytkownika: 23,
-    IdFirmy: 18,
+    IdWlascicielaFirmy: 18,
     Użytkownik: 'user23',
     NrIMEI: '345678901234',
     NazwaUrządzenia: 'Device23',
@@ -288,8 +265,7 @@ export const clientsUsersTable = [
     Aktywny: false,
   },
   {
-    idUżytkownika: 24,
-    IdFirmy: 11,
+    IdWlascicielaFirmy: 11,
     Użytkownik: 'user24',
     NrIMEI: '456789012345',
     NazwaUrządzenia: 'Device24',
@@ -300,8 +276,7 @@ export const clientsUsersTable = [
     Aktywny: true,
   },
   {
-    idUżytkownika: 25,
-    IdFirmy: 4,
+    IdWlascicielaFirmy: 4,
     Użytkownik: 'user25',
     NrIMEI: '567890123456',
     NazwaUrządzenia: 'Device25',
@@ -312,8 +287,7 @@ export const clientsUsersTable = [
     Aktywny: false,
   },
   {
-    idUżytkownika: 26,
-    IdFirmy: 16,
+    IdWlascicielaFirmy: 16,
     Użytkownik: 'user26',
     NrIMEI: '678901234567',
     NazwaUrządzenia: 'Device26',
@@ -324,8 +298,7 @@ export const clientsUsersTable = [
     Aktywny: true,
   },
   {
-    idUżytkownika: 27,
-    IdFirmy: 9,
+    IdWlascicielaFirmy: 9,
     Użytkownik: 'user27',
     NrIMEI: '789012345678',
     NazwaUrządzenia: 'Device27',
@@ -336,8 +309,7 @@ export const clientsUsersTable = [
     Aktywny: true,
   },
   {
-    idUżytkownika: 28,
-    IdFirmy: 2,
+    IdWlascicielaFirmy: 2,
     Użytkownik: 'user28',
     NrIMEI: '890123456789',
     NazwaUrządzenia: 'Device28',
@@ -348,8 +320,7 @@ export const clientsUsersTable = [
     Aktywny: false,
   },
   {
-    idUżytkownika: 29,
-    IdFirmy: 12,
+    IdWlascicielaFirmy: 12,
     Użytkownik: 'user29',
     NrIMEI: '789456123789',
     NazwaUrządzenia: 'Device29',
@@ -360,8 +331,7 @@ export const clientsUsersTable = [
     Aktywny: false,
   },
   {
-    idUżytkownika: 30,
-    IdFirmy: 8,
+    IdWlascicielaFirmy: 8,
     Użytkownik: 'user30',
     NrIMEI: '456123789456',
     NazwaUrządzenia: 'Device30',
@@ -372,8 +342,7 @@ export const clientsUsersTable = [
     Aktywny: true,
   },
   {
-    idUżytkownika: 31,
-    IdFirmy: 4,
+    IdWlascicielaFirmy: 4,
     Użytkownik: 'user31',
     NrIMEI: '111111111111',
     NazwaUrządzenia: 'Device31',
@@ -384,8 +353,7 @@ export const clientsUsersTable = [
     Aktywny: false,
   },
   {
-    idUżytkownika: 32,
-    IdFirmy: 6,
+    IdWlascicielaFirmy: 6,
     Użytkownik: 'user32',
     NrIMEI: '222222222222',
     NazwaUrządzenia: 'Device32',
@@ -396,8 +364,7 @@ export const clientsUsersTable = [
     Aktywny: true,
   },
   {
-    idUżytkownika: 33,
-    IdFirmy: 17,
+    IdWlascicielaFirmy: 17,
     Użytkownik: 'user33',
     NrIMEI: '333333333333',
     NazwaUrządzenia: 'Device33',
@@ -408,8 +375,7 @@ export const clientsUsersTable = [
     Aktywny: false,
   },
   {
-    idUżytkownika: 34,
-    IdFirmy: 18,
+    IdWlascicielaFirmy: 18,
     Użytkownik: 'user34',
     NrIMEI: '444444444444',
     NazwaUrządzenia: 'Device34',
@@ -420,8 +386,7 @@ export const clientsUsersTable = [
     Aktywny: true,
   },
   {
-    idUżytkownika: 35,
-    IdFirmy: 15,
+    IdWlascicielaFirmy: 15,
     Użytkownik: 'user35',
     NrIMEI: '555555555555',
     NazwaUrządzenia: 'Device35',
@@ -432,8 +397,7 @@ export const clientsUsersTable = [
     Aktywny: true,
   },
   {
-    idUżytkownika: 36,
-    IdFirmy: 1,
+    IdWlascicielaFirmy: 1,
     Użytkownik: 'user36',
     NrIMEI: '666666666666',
     NazwaUrządzenia: 'Device36',
@@ -444,8 +408,7 @@ export const clientsUsersTable = [
     Aktywny: false,
   },
   {
-    idUżytkownika: 37,
-    IdFirmy: 9,
+    IdWlascicielaFirmy: 9,
     Użytkownik: 'user37',
     NrIMEI: '777777777777',
     NazwaUrządzenia: 'Device37',
@@ -456,8 +419,7 @@ export const clientsUsersTable = [
     Aktywny: true,
   },
   {
-    idUżytkownika: 38,
-    IdFirmy: 16,
+    IdWlascicielaFirmy: 16,
     Użytkownik: 'user38',
     NrIMEI: '888888888888',
     NazwaUrządzenia: 'Device38',
@@ -468,8 +430,7 @@ export const clientsUsersTable = [
     Aktywny: false,
   },
   {
-    idUżytkownika: 39,
-    IdFirmy: 7,
+    IdWlascicielaFirmy: 7,
     Użytkownik: 'user39',
     NrIMEI: '999999999999',
     NazwaUrządzenia: 'Device39',
@@ -480,8 +441,7 @@ export const clientsUsersTable = [
     Aktywny: true,
   },
   {
-    idUżytkownika: 40,
-    IdFirmy: 14,
+    IdWlascicielaFirmy: 14,
     Użytkownik: 'user40',
     NrIMEI: '000000000000',
     NazwaUrządzenia: 'Device40',
@@ -492,8 +452,7 @@ export const clientsUsersTable = [
     Aktywny: true,
   },
   {
-    idUżytkownika: 41,
-    IdFirmy: 3,
+    IdWlascicielaFirmy: 3,
     Użytkownik: 'user41',
     NrIMEI: '111111222222',
     NazwaUrządzenia: 'Device41',
@@ -504,8 +463,7 @@ export const clientsUsersTable = [
     Aktywny: false,
   },
   {
-    idUżytkownika: 42,
-    IdFirmy: 12,
+    IdWlascicielaFirmy: 12,
     Użytkownik: 'user42',
     NrIMEI: '222222333333',
     NazwaUrządzenia: 'Device42',
@@ -516,8 +474,7 @@ export const clientsUsersTable = [
     Aktywny: true,
   },
   {
-    idUżytkownika: 43,
-    IdFirmy: 19,
+    IdWlascicielaFirmy: 19,
     Użytkownik: 'user43',
     NrIMEI: '333333444444',
     NazwaUrządzenia: 'Device43',

@@ -13,7 +13,7 @@ export const logoutUser = () => ({
   payload: {
     isUserLogged: false,
     isAdmin: false,
-    companyId: null,
+    IdWlascicielaFirmy: null,
   },
 })
 

@@ -36,9 +36,9 @@ const LoginForm = () => {
     }
 
     if (found.login === login && found.password === password) {
-      store.dispatch({ type: LOGIN_USER, payload: { isAdmin: found.admin, companyId: found.id } })
+      store.dispatch({ type: LOGIN_USER, payload: { isAdmin: found.admin, IdWlascicielaFirmy: found.id } })
       if (!found.admin) {
-        const companyInfo = aboutCompany.find((element) => element.clientId === found.id)
+        const companyInfo = aboutCompany.find((element) => element.IdWlascicielaFirmy === found.id)
         store.dispatch({
           type: 'COMPANY_INFO',
           companyInfo,
