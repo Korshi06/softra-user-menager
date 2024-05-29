@@ -175,13 +175,13 @@ const ActionButtons = ({ gridRefClients, gridRefUsers, clientPage }) => {
   return (
     <>
       <div className='buttonWrapper'>
-        <button onClick={handleEditBtn} className='actionButton btn btn-primary'>
+        <button onClick={handleEditBtn} className='actionButton'>
           Edytuj
         </button>
-        <button onClick={handleAddBtn} className='actionButton btn btn-primary'>
+        <button onClick={handleAddBtn} className='actionButton'>
           Add
         </button>
-        <button onClick={handleDeleteBtn} className='btn actionButton btn-danger'>
+        <button onClick={handleDeleteBtn} className='actionButton' id='deleteBtn'>
           Delete
         </button>
       </div>
