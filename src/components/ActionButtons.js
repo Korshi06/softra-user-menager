@@ -1,15 +1,41 @@
-import React from 'react'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import ModalWindow from './ModalWindow'
-import loginInfoTable from '../data/loginInfoTable'
 import { dataStore } from '../store/DataStore'
 import { UPDATE_DATA, UPDATE_USER } from '../actions/DataAction'
 import '../styles/actionButtons.css'
+import { store } from '../store/UserLoggedStore'
+import { current } from '@reduxjs/toolkit'
 
 const ActionButtons = ({ gridRefClients, gridRefUsers, clientPage }) => {
   const [openModal, setOpenModal] = useState(false)
   const [editing, setEditing] = useState(false)
   const [adding, setAdding] = useState(false)
+  const [deactivation, setDeactivation] = useState(false)
+
+  const handleDeactivationBtn = () => {
+    setOpenModal(true)
+    setDeactivation(true)
+  }
+
+  const deactivateUser = () => {
+    const selectedUser = gridRefUsers.current.api.getSelectedRows()[0]
+    const { IdWlascicielaFirmy } = selectedUser
+
+    const deactivatedUser = {
+      ...selectedUser,
+      Aktywny: false,
+    }
+
+    const updatedUsers = dataStore
+      .getState()
+      .DataReducer.aboutUser.map((user) => (user.IdWlascicielaFirmy === IdWlascicielaFirmy ? deactivatedUser : user))
+
+    dataStore.dispatch({ type: UPDATE_USER, aboutUser: updatedUsers })
+    gridRefUsers.current.api.setRowData(updatedUsers)
+
+    setOpenModal(false)
+    setDeactivation(false)
+  }
 
   const handleEditBtn = () => {
     setOpenModal(true)
@@ -19,54 +45,59 @@ const ActionButtons = ({ gridRefClients, gridRefUsers, clientPage }) => {
 
   const editClient = (e) => {
     e.preventDefault()
-    const IdWlascicielaFirmy = gridRefClients.current.api.getSelectedRows()[0].IdWlascicielaFirmy
+    const selectedClient = gridRefClients.current.api.getSelectedRows()[0]
+    const { IdWlascicielaFirmy } = selectedClient
 
     const editedClient = {
-      ...gridRefClients.current.api.getSelectedRows()[0],
+      ...selectedClient,
       companyName: e.target[0].value,
       boughtCopies: Number(e.target[1].value),
     }
 
-    const editedTable = dataStore.getState().DataReducer.aboutCompany.map((item) => {
-      if (item.IdWlascicielaFirmy === IdWlascicielaFirmy) {
-        return editedClient
-      }
-      return item
-    })
+    const updatedClients = dataStore
+      .getState()
+      .DataReducer.aboutCompany.map((client) => (client.IdWlascicielaFirmy === IdWlascicielaFirmy ? editedClient : client))
 
-    dataStore.dispatch({ type: UPDATE_DATA, aboutCompany: editedTable })
-
-    gridRefClients.current.api.setGridOption('rowData', dataStore.getState().DataReducer.aboutCompany)
+    dataStore.dispatch({ type: UPDATE_DATA, aboutCompany: updatedClients })
+    gridRefClients.current.api.setRowData(updatedClients)
 
     setOpenModal(false)
     setEditing(false)
   }
 
   const editUser = (e) => {
-    e.preventDefault()
-    const IdWlascicielaFirmy = gridRefUsers.current.api.getSelectedRows()[0].IdWlascicielaFirmy
+    const selectedUser = gridRefUsers.current.api.getSelectedRows()[0]
+    const { Id } = selectedUser
 
     const editedUser = {
-      ...gridRefUsers.current.api.getSelectedRows()[0],
-      IdWlascicielaFirmy: e.target[1].value,
-      NrIMEI: e.target[2].value,
-      NazwaUrządzenia: e.target[3].value,
-      Dział: e.target[4].value,
-      NrTelefonu: e.target[5].value,
-      ostatnieAktywność: e.target[6].value,
-      Aktywny: e.target[7].value,
+      ...selectedUser,
+      IdWlascicielaFirmy: e.IdWlascicielaFirmy,
+      Użytkownik: e.Użytkownik,
+      NrIMEI: e.NrIMEI,
+      NazwaUrządzenia: e.NazwaUrzadzenia,
+      Dział: e.Dzial,
+      NrTelefonu: e.NrTelefonu,
+      ['Wersja aplikacji']: e.WersjaAplikacji,
+      ostatniaAktywność: e.ostatniaAktywność,
+      Aktywny: e.Aktywny,
     }
 
-    const editedTable = dataStore.getState().DataReducer.aboutUser.map((item) => {
-      if (item.IdWlascicielaFirmy === IdWlascicielaFirmy) {
-        return editedUser
-      }
-      return item
-    })
+    let currentUsers = []
+    if (store.getState().UserLoginReducer.isAdmin) {
+      currentUsers = dataStore.getState().DataReducer.aboutUser.map((user) => (user.Id === Id ? editedUser : user))
+    } else {
+      console.log(store.getState().UserLoginReducer.companyInfo.IdWlascicielaFirmy)
+      currentUsers = dataStore
+        .getState()
+        .DataReducer.aboutUser.filter(
+          (user) => user.IdWlascicielaFirmy === store.getState().UserLoginReducer.companyInfo.IdWlascicielaFirmy
+        )
+    }
 
-    dataStore.dispatch({ type: UPDATE_USER, aboutUser: editedTable })
+    const updatedUsers = currentUsers.map((user) => (user.Id === Id ? editedUser : user))
 
-    gridRefUsers.current.api.setGridOption('rowData', dataStore.getState().DataReducer.aboutUser)
+    dataStore.dispatch({ type: UPDATE_USER, aboutUser: updatedUsers })
+    gridRefUsers.current.api.setRowData(updatedUsers)
 
     setOpenModal(false)
     setEditing(false)
@@ -85,48 +116,40 @@ const ActionButtons = ({ gridRefClients, gridRefUsers, clientPage }) => {
   }
 
   const deleteFromClients = () => {
-    const IdWlascicielaFirmy = gridRefClients.current.api.getSelectedRows()[0].IdWlascicielaFirmy
+    const selectedClient = gridRefClients.current.api.getSelectedRows()[0]
+    const { IdWlascicielaFirmy } = selectedClient
 
-    const editedTable = dataStore.getState().DataReducer.aboutCompany.slice()
+    const updatedClients = dataStore
+      .getState()
+      .DataReducer.aboutCompany.filter((client) => client.IdWlascicielaFirmy !== IdWlascicielaFirmy)
 
-    editedTable.filter((item) => {
-      if (item.IdWlascicielaFirmy === IdWlascicielaFirmy) {
-        const index = editedTable.indexOf(item)
-        editedTable.splice(index, 1)
-      }
-      return editedTable
-    })
+    dataStore.dispatch({ type: UPDATE_DATA, aboutCompany: updatedClients })
+    gridRefClients.current.api.setRowData(updatedClients)
 
-    loginInfoTable.filter((item) => {
-      if (item.id === IdWlascicielaFirmy) {
-        const index = loginInfoTable.indexOf(item)
-        loginInfoTable.splice(index, 1)
-      }
-      return loginInfoTable
-    })
-
-    dataStore.dispatch({ type: UPDATE_DATA, aboutCompany: editedTable })
-
-    gridRefClients.current.api.setGridOption('rowData', dataStore.getState().DataReducer.aboutCompany)
     setOpenModal(false)
   }
 
   const deleteFromUsers = () => {
-    const IdWlascicielaFirmy = gridRefUsers.current.api.getSelectedRows()[0].IdWlascicielaFirmy
+    const selectedUser = gridRefUsers.current.api.getSelectedRows()[0]
+    const { Id } = selectedUser
 
-    const editedTable = dataStore.getState().DataReducer.aboutUser.slice()
+    let currentUsers = []
+    if (store.getState().UserLoginReducer.isAdmin) {
+      currentUsers = dataStore.getState().DataReducer.aboutUser.map((user) => (user.Id === Id ? null : user))
+    } else {
+      console.log(store.getState().UserLoginReducer.companyInfo.IdWlascicielaFirmy)
+      currentUsers = dataStore
+        .getState()
+        .DataReducer.aboutUser.filter(
+          (user) => user.IdWlascicielaFirmy === store.getState().UserLoginReducer.companyInfo.IdWlascicielaFirmy
+        )
+    }
 
-    editedTable.filter((item) => {
-      if (item.IdWlascicielaFirmy === IdWlascicielaFirmy) {
-        const index = editedTable.indexOf(item)
-        editedTable.splice(index, 1)
-      }
-      return editedTable
-    })
+    const updatedUsers = currentUsers.filter((user) => user.Id !== selectedUser.Id)
 
-    dataStore.dispatch({ type: UPDATE_DATA, aboutCompany: editedTable })
+    dataStore.dispatch({ type: UPDATE_USER, aboutUser: updatedUsers })
+    gridRefUsers.current.api.setRowData(updatedUsers)
 
-    gridRefUsers.current.api.setGridOption('rowData', editedTable)
     setOpenModal(false)
   }
 
@@ -137,36 +160,44 @@ const ActionButtons = ({ gridRefClients, gridRefUsers, clientPage }) => {
   }
 
   const addClient = (e) => {
-    const editedTable = dataStore.getState().DataReducer.aboutCompany.slice()
-    const newId = editedTable[editedTable.length - 1].IdWlascicielaFirmy + 1
+    e.preventDefault()
+    const updatedClients = dataStore.getState().DataReducer.aboutCompany.slice()
+    const newId = updatedClients[updatedClients.length - 1].IdWlascicielaFirmy + 1
 
     const newClient = {
-      companyName: e['Company Name'],
-      boughtCopies: Number(e['Bought Copies']),
-      IdWlascicielaFirmy: Number(newId),
+      companyName: e.target[0].value,
+      boughtCopies: Number(e.target[1].value),
+      IdWlascicielaFirmy: newId,
     }
 
-    editedTable.push(newClient)
-    dataStore.dispatch({ type: UPDATE_DATA, aboutCompany: editedTable })
-    gridRefClients.current.api.setGridOption('rowData', dataStore.getState().DataReducer.aboutCompany)
+    updatedClients.push(newClient)
+    dataStore.dispatch({ type: UPDATE_DATA, aboutCompany: updatedClients })
+    gridRefClients.current.api.setRowData(updatedClients)
+
     setOpenModal(false)
   }
 
   const addUser = (e) => {
+    const userTable = dataStore.getState().DataReducer.aboutUser.slice()
+    const newId = userTable[userTable.length - 1].Id + 1
+
     const newUser = {
-      IdWlascicielaFirmy: Number(e['IdWlascicielaFirmy']),
-      NrIMEI: Number(e['Nr IMEI']),
-      NazwaUrządzenia: e['Nazwa Urządzenia'],
-      Dział: e['Dział'],
-      NrTelefonu: e['Nr Telefonu'],
-      ['Ostatnie Aktywność']: e['Ostatnie Aktywność'],
-      ostatnieAktywność: e['Ostatnie Aktywność'],
-      Aktywny: e['Aktywny'],
+      Id: newId,
+      IdWlascicielaFirmy: e.IdWlascicielaFirmy,
+      Użytkownik: e.Użytkownik,
+      NrIMEI: e.NrIMEI,
+      NazwaUrządzenia: e.NazwaUrzadzenia,
+      Dział: e.Dzial,
+      NrTelefonu: e.NrTelefonu,
+      ['Wersja aplikacji']: e.WersjaAplikacji,
+      ostatniaAktywność: e.ostatniaAktywność,
+      Aktywny: e.Aktywny,
     }
 
-    console.log(newUser)
-    dataStore.getState().DataReducer.aboutUser.push(newUser)
-    gridRefUsers.current.api.setGridOption('rowData', dataStore.getState().DataReducer.aboutUser)
+    const updatedUsers = [...dataStore.getState().DataReducer.aboutUser, newUser]
+    dataStore.dispatch({ type: UPDATE_USER, aboutUser: updatedUsers })
+
+    gridRefUsers.current.api.setRowData(dataStore.getState().DataReducer.aboutUser)
 
     setOpenModal(false)
   }
@@ -182,20 +213,27 @@ const ActionButtons = ({ gridRefClients, gridRefUsers, clientPage }) => {
       <button onClick={handleDeleteBtn} className='actionButton deleteBtn'>
         Delete
       </button>
+      {!clientPage && (
+        <button onClick={handleDeactivationBtn} className='actionButton deleteBtn'>
+          Dezaktywuj
+        </button>
+      )}
 
       <ModalWindow
         openModal={openModal}
-        deleteFromClients={deleteFromClients}
-        gridRef={gridRefClients}
-        editing={editing}
         closeModal={closeModal}
-        editClient={editClient}
+        editing={editing}
         adding={adding}
-        addClient={addClient}
-        clientPage={true}
-        editUser={editUser}
-        deleteFromUsers={deleteFromUsers}
-        addUser={addUser}
+        deactivation={deactivation}
+        clientPage={clientPage}
+        gridRef={clientPage ? gridRefClients : gridRefUsers}
+        deleteFromClients={clientPage ? deleteFromClients : undefined}
+        deleteFromUsers={!clientPage ? deleteFromUsers : undefined}
+        editClient={clientPage ? editClient : undefined}
+        editUser={!clientPage ? editUser : undefined}
+        addClient={clientPage ? addClient : undefined}
+        addUser={!clientPage ? addUser : undefined}
+        deactivateUser={!clientPage ? deactivateUser : undefined}
       />
     </>
   )

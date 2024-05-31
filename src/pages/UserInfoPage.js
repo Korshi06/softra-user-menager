@@ -10,13 +10,14 @@ import { clientsUsersTable } from '../data/clientsUsersTable'
 import { Provider } from 'react-redux'
 import { dataStore } from '../store/DataStore'
 import ActionButtons from '../components/ActionButtons'
-import DeactiovationButton from '../components/DeactiovationButton'
+import { UPDATE_DATA } from '../actions/DataAction'
 
 //All users of the currently logged in company will be shown here
 
 const UserInfoPage = () => {
   const isUserLoggedIn = store.getState().UserLoginReducer.isUserLoggedIn
   const isAdmin = store.getState().UserLoginReducer.isAdmin
+  const gridRefUsers = React.useRef()
 
   const [filteredUsers, setFilteredUsers] = useState([])
 
@@ -31,7 +32,7 @@ const UserInfoPage = () => {
     }
   }, [isAdmin, isUserLoggedIn, IdWlascicielaFirmy])
 
-  const gridRefUsers = React.useRef()
+  dataStore.dispatch({ type: UPDATE_DATA, aboutCompany: filteredUsers })
 
   return (
     <div className='center'>
@@ -39,11 +40,10 @@ const UserInfoPage = () => {
         <>
           <h1>User info</h1>
           <Provider store={dataStore}>
-            <CompanyInfo clientsUsersTable={filteredUsers} />
-            <UserTable clientsUsersTable={filteredUsers} />
+            <CompanyInfo />
+            <UserTable gridRefUsers={gridRefUsers} />
             <div className='buttonWrapper'>
               <ActionButtons gridRefUsers={gridRefUsers} clientPage={false} />
-              <DeactiovationButton gridRefUsers={gridRefUsers} />
             </div>
           </Provider>
         </>

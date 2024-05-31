@@ -21,7 +21,7 @@ const ClientInfoPage = () => {
             <h1>O klientach</h1>
             <ClientTable gridRefClients={gridRefClients} />
             <div className='buttonWrapper'>
-              <ActionButtons gridRefClients={gridRefClients} />
+              <ActionButtons gridRefClients={gridRefClients} clientPage={true} />
             </div>
           </Provider>
         </div>

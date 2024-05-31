@@ -4,17 +4,18 @@ import 'ag-grid-community/styles/ag-grid.css'
 import 'ag-grid-community/styles/ag-theme-quartz.css'
 import { clientsUsersTableNames } from '../data/clientsUsersTable'
 import Container from 'react-bootstrap/Container'
+import { dataStore } from '../store/DataStore'
 
-const UserTable = (props) => {
-  const gridRefUsers = React.useRef()
+const UserTable = ({ gridRefUsers }) => {
   return (
     <Container className='ag-theme-quartz-dark p-0 m-20 '>
       <div>
         <AgGridReact
-          domLayout={'autoHeight'}
           ref={gridRefUsers}
+          domLayout={'autoHeight'}
+          rowSelection='single'
           columnDefs={clientsUsersTableNames}
-          rowData={props.clientsUsersTable}
+          rowData={dataStore.getState().DataReducer.aboutCompany}
           pagination={true}
           paginationPageSize={30}
         />

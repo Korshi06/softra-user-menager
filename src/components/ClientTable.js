@@ -16,7 +16,7 @@ const ClientTable = ({ gridRefClients }) => {
           columnDefs={aboutCompanyNames}
           rowData={aboutCompany}
           pagination={true}
-          paginationPageSize={50}
+          paginationPageSize={30}
         />
       </div>
     </Container>
