@@ -49,11 +49,11 @@ const UserInfoPage = () => {
         </>
       ) : (
         <div className='center'>
-          <h1>UserInfoPage</h1>
-          <h3>Log in to access this page</h3>
+          <h1>O użytkownikach</h1>
+          <h3>Zaloguj się by wyświetlić</h3>
           <ul>
             <li className='btnSlimmer'>
-              <NavLink to='/login'>Log in</NavLink>
+              <NavLink to='/login'>Zaloguj się</NavLink>
             </li>
           </ul>
         </div>

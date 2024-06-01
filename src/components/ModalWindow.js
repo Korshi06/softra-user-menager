@@ -136,8 +136,8 @@ const ModalEditUser = ({ closeModal, gridRef, editUser }) => {
             {errors.Użytkownik && (
               <span>
                 {errors.Użytkownik.type === 'required'
-                  ? 'Użytkownik is required'
-                  : 'Użytkownik must be between 3 and 50 characters'}
+                  ? 'Pole użytkownik jest wymagane'
+                  : 'Pole urzytkowni musi składać się z 3 do 50 znaków'}
               </span>
             )}
 
@@ -148,7 +148,7 @@ const ModalEditUser = ({ closeModal, gridRef, editUser }) => {
               {...register('NrIMEI', { required: true, minLength: 12, maxLength: 12 })}
             />
             {errors.NrIMEI && (
-              <span>{errors.NrIMEI.type === 'required' ? 'Nr IMEI is required' : 'Nr IMEI must be exactly 12 characters'}</span>
+              <span>{errors.NrIMEI.type === 'required' ? 'Pole Nr IMEI jest wymage' : 'Pole Nr IMEI musi składać się z 12 cyfr'}</span>
             )}
 
             <input
@@ -160,8 +160,8 @@ const ModalEditUser = ({ closeModal, gridRef, editUser }) => {
             {errors.NazwaUrządzenia && (
               <span>
                 {errors.NazwaUrządzenia.type === 'required'
-                  ? 'Nazwa Urządzenia is required'
-                  : 'Nazwa Urządzenia must be between 3 and 50 characters'}
+                  ? 'Pole Nazwa urządzenia jest wymagane'
+                  : 'Pole Nazwa urządzenia musi mieścić się między 3 a 50 znakami'}
               </span>
             )}
 
@@ -172,7 +172,7 @@ const ModalEditUser = ({ closeModal, gridRef, editUser }) => {
               {...register('Dzial', { required: true, minLength: 3, maxLength: 50 })}
             />
             {errors.Dział && (
-              <span>{errors.Dział.type === 'required' ? 'Dział is required' : 'Dział must be between 3 and 50 characters'}</span>
+              <span>{errors.Dział.type === 'required' ? 'Pole Dział jest wymagane' : 'Pole Dział musi mieścić się między 3 a 50 znakami'}</span>
             )}
 
             <input
@@ -184,8 +184,8 @@ const ModalEditUser = ({ closeModal, gridRef, editUser }) => {
             {errors.NrTelefonu && (
               <span>
                 {errors.NrTelefonu.type === 'required'
-                  ? 'Nr Telefonu is required'
-                  : 'Nr Telefonu must follow the pattern 123-456-7890'}
+                  ? 'Pole Nr telefonu jest wymagane'
+                  : 'Pole Nr telefonu musi być zgodne ze wzorem 123-456-7890'}
               </span>
             )}
 
@@ -198,8 +198,8 @@ const ModalEditUser = ({ closeModal, gridRef, editUser }) => {
             {errors['Wersja aplikacji'] && (
               <span>
                 {errors['Wersja aplikacji'].type === 'required'
-                  ? 'Wersja aplikacji is required'
-                  : 'Wersja aplikacji must follow the pattern 1.0'}
+                  ? 'Pole Wersja aplikacji jest wymagene'
+                  : 'Pole Wersja aplikacji musi być zgodne ze wzorem 1.0'}
               </span>
             )}
 
@@ -270,13 +270,13 @@ const ModalAdding = ({ addClient, closeModal, addUser, clientPage }) => {
           <input
             type='text'
             placeholder='Company Name'
-            {...register('Company Name', { required: true, min: 3, maxLength: 60 })}
+            {...register('Company Name', { required: true, min: 3, maxLength: 50 })}
           />
           {errors['Company Name'] && (
             <span>
               {errors['Company Name'].type === 'required'
-                ? 'Company Name is required'
-                : 'Company Name must be between 3 and 60 characters'}
+                ? 'Pole Company name jest wymagane'
+                : 'Pole Company Name musi mieścić się między 3 a 50 znakami'}
             </span>
           )}
           <input
@@ -287,8 +287,8 @@ const ModalAdding = ({ addClient, closeModal, addUser, clientPage }) => {
           {errors['Bought Copies'] && (
             <span>
               {errors['Bought Copies'].type === 'required'
-                ? 'Bought Copies is required'
-                : 'Bought Copies must be between 0 and 99999'}
+                ? 'Pole Bought copies jest wymagane'
+                : 'Pole Bought copies musi mieścić się między 0 a 99999'}
             </span>
           )}
           <button>Add client</button>
@@ -307,16 +307,16 @@ const ModalAdding = ({ addClient, closeModal, addUser, clientPage }) => {
           {errors['IdWlascicielaFirmy'] && (
             <span>
               {errors['IdWlascicielaFirmy'].type === 'required'
-                ? 'IdWlascicielaFirmy is required'
-                : 'IdWlascicielaFirmy must be between 1 and 99999'}
+                ? 'Pole Id wlaściciela jest wymagane'
+                : 'Pole Id wlaścicieka musi mieścić się między 1 a 99999'}
             </span>
           )}
           <input type='text' placeholder='Użytkownik' {...register('Użytkownik', { required: true, min: 3, maxLength: 50 })} />
           {errors['Użytkownik'] && (
             <span>
               {errors['Użytkownik'].type === 'required'
-                ? 'Użytkownik is required'
-                : 'Użytkownik must be between 3 and 50 characters'}
+                ? 'Pole użytkownik jest wymagane'
+                : 'Pole użytkownik musi mieścić się między 3 a 50 znakami'}
             </span>
           )}
           <input type='text' placeholder='Nr IMEI' {...register('NrIMEI', { required: true, minLength: 12, maxLength: 12 })} />
@@ -331,13 +331,13 @@ const ModalAdding = ({ addClient, closeModal, addUser, clientPage }) => {
           {errors['Nazwa Urządzenia'] && (
             <span>
               {errors['Nazwa Urządzenia'].type === 'required'
-                ? 'Nazwa Urządzenia is required'
-                : 'Nazwa Urządzenia must be between 3 and 50 characters'}
+                ? 'Pole Nazwa urządzenia jest wymagane'
+                : 'Pole Nazwa urządzenia musi mieścić się między 3 a 50'}
             </span>
           )}
           <input type='text' placeholder='Dział' {...register('Dzial', { required: true, min: 3, maxLength: 50 })} />
           {errors['Dział'] && (
-            <span>{errors['Dział'].type === 'required' ? 'Dział is required' : 'Dział must be between 3 and 50 characters'}</span>
+            <span>{errors['Dział'].type === 'required' ? 'Pole Dział jest wymagane' : 'Pole Dział musi się miescić między 3 a 50 znakami'}</span>
           )}
           <input
             type='text'
@@ -347,8 +347,8 @@ const ModalAdding = ({ addClient, closeModal, addUser, clientPage }) => {
           {errors['Nr Telefonu'] && (
             <span>
               {errors['Nr Telefonu'].type === 'required'
-                ? 'Nr Telefonu is required'
-                : 'Nr Telefonu must follow the pattern 123-456-7890'}
+                ? 'Pole Nr telefonu jest wymagane'
+                : 'Pole Nr telefonu musi być zgodne ze wzorem 123-456-7890'}
             </span>
           )}
           <input
@@ -359,8 +359,8 @@ const ModalAdding = ({ addClient, closeModal, addUser, clientPage }) => {
           {errors['Wersja aplikacji'] && (
             <span>
               {errors['Wersja aplikacji'].type === 'required'
-                ? 'Wersja aplikacji is required'
-                : 'Wersja aplikacji must follow the pattern 1.0'}
+                ? 'Pole Wersja aplikacji jest wymagane'
+                : 'Pole Nr Telefonu musi być zgodne ze wzorem 1.0'}
             </span>
           )}
           <input type='date' placeholder='Ostatnia Aktywność' {...register('ostatniaAktywność', { required: true })} />
@@ -369,7 +369,7 @@ const ModalAdding = ({ addClient, closeModal, addUser, clientPage }) => {
             Aktywny
             <input type='checkbox' {...register('Aktywny')} />
           </label>
-          <button>Add user</button>
+          <button>Dodaj użytkownika</button>
         </form>
       )
     }
@@ -378,10 +378,10 @@ const ModalAdding = ({ addClient, closeModal, addUser, clientPage }) => {
   return (
     <div className='modalOverlay'>
       <div className='modalWindow'>
-        <h2>Adding</h2>
+        <h2>Dodawanie</h2>
         <div>
           <Inputs />
-          <button onClick={closeModal}>Cancel</button>
+          <button onClick={closeModal}>Anuluj</button>
         </div>
       </div>
     </div>

@@ -14,22 +14,22 @@ const Footer = () => {
             <ul className='list-unstyled'>
               <li>
                 <NavLink to='/' className='text-black'>
-                  Home
+                  Strona główna
                 </NavLink>
               </li>
               <li>
                 <NavLink to='/login' className='text-black'>
-                  Login
+                  Zaloguj się
                 </NavLink>
               </li>
               <li>
                 <NavLink to='/clientInfoPage' className='text-black'>
-                  Client Info
+                  O klientach
                 </NavLink>
               </li>
               <li>
                 <NavLink to='/userInfoPage' className='text-black'>
-                  User Info
+                  O użytkownikach
                 </NavLink>
               </li>
             </ul>

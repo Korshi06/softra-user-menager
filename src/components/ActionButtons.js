@@ -26,6 +26,21 @@ const ActionButtons = ({ gridRefClients, gridRefUsers, clientPage }) => {
       Aktywny: false,
     }
 
+     
+
+    let currentUsers = []
+    if (store.getState().UserLoginReducer.isAdmin) {
+      currentUsers = dataStore.getState().DataReducer.aboutUser
+    } else {
+      console.log(store.getState().UserLoginReducer.companyInfo.IdWlascicielaFirmy)
+      currentUsers = dataStore
+        .getState()
+        .DataReducer.aboutUser.filter(
+          (user) => user.IdWlascicielaFirmy === store.getState().UserLoginReducer.companyInfo.IdWlascicielaFirmy
+        )
+    }
+
+
     const updatedUsers = dataStore
       .getState()
       .DataReducer.aboutUser.map((user) => (user.IdWlascicielaFirmy === IdWlascicielaFirmy ? deactivatedUser : user))
@@ -84,7 +99,7 @@ const ActionButtons = ({ gridRefClients, gridRefUsers, clientPage }) => {
 
     let currentUsers = []
     if (store.getState().UserLoginReducer.isAdmin) {
-      currentUsers = dataStore.getState().DataReducer.aboutUser.map((user) => (user.Id === Id ? editedUser : user))
+      currentUsers = dataStore.getState().DataReducer.aboutUser
     } else {
       console.log(store.getState().UserLoginReducer.companyInfo.IdWlascicielaFirmy)
       currentUsers = dataStore
@@ -135,7 +150,7 @@ const ActionButtons = ({ gridRefClients, gridRefUsers, clientPage }) => {
 
     let currentUsers = []
     if (store.getState().UserLoginReducer.isAdmin) {
-      currentUsers = dataStore.getState().DataReducer.aboutUser.map((user) => (user.Id === Id ? null : user))
+      currentUsers = dataStore.getState().DataReducer.aboutUser
     } else {
       console.log(store.getState().UserLoginReducer.companyInfo.IdWlascicielaFirmy)
       currentUsers = dataStore
@@ -194,7 +209,21 @@ const ActionButtons = ({ gridRefClients, gridRefUsers, clientPage }) => {
       Aktywny: e.Aktywny,
     }
 
-    const updatedUsers = [...dataStore.getState().DataReducer.aboutUser, newUser]
+    let currentUsers = []
+    if (store.getState().UserLoginReducer.isAdmin) {
+      currentUsers = dataStore.getState().DataReducer.aboutUser
+    } else {
+      console.log(store.getState().UserLoginReducer.companyInfo.IdWlascicielaFirmy)
+      currentUsers = dataStore
+        .getState()
+        .DataReducer.aboutUser.filter(
+          (user) => user.IdWlascicielaFirmy === store.getState().UserLoginReducer.companyInfo.IdWlascicielaFirmy
+        )
+    }
+
+  
+
+    const updatedUsers = [...currentUsers, newUser]
     dataStore.dispatch({ type: UPDATE_USER, aboutUser: updatedUsers })
 
     gridRefUsers.current.api.setRowData(dataStore.getState().DataReducer.aboutUser)
@@ -208,10 +237,10 @@ const ActionButtons = ({ gridRefClients, gridRefUsers, clientPage }) => {
         Edytuj
       </button>
       <button onClick={handleAddBtn} className='actionButton'>
-        Add
+        Dodaj
       </button>
       <button onClick={handleDeleteBtn} className='actionButton deleteBtn'>
-        Delete
+        Usuń
       </button>
       {!clientPage && (
         <button onClick={handleDeactivationBtn} className='actionButton deleteBtn'>

@@ -18,22 +18,22 @@ const Header = () => {
             <ul className='nav justify-content-center'>
               <li className='nav-item'>
                 <NavLink to='/' className='nav-link text-black'>
-                  Home
+                  Strona główna
                 </NavLink>
               </li>
               <li className='nav-item'>
                 <NavLink to='/login' className='nav-link text-black'>
-                  Login
+                  Zaloguj się
                 </NavLink>
               </li>
               <li className='nav-item'>
                 <NavLink to='/clientInfoPage' className='nav-link text-black'>
-                  Client Info
+                  O klientach
                 </NavLink>
               </li>
               <li className='nav-item'>
                 <NavLink to='/userInfoPage' className='nav-link text-black'>
-                  User Info
+                  O użytkownikach
                 </NavLink>
               </li>
             </ul>

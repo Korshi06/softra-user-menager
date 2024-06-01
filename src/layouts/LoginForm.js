@@ -30,7 +30,7 @@ const LoginForm = () => {
     const found = loginInfoTable.find((element) => element.login === login)
     if (!found) {
       store.dispatch({ type: LOGOUT_USER })
-      setErrorState('Incorrect login or password')
+      setErrorState('Niepoprawne hasło lub login')
       setReRender(!reRender)
       return
     }
@@ -47,7 +47,7 @@ const LoginForm = () => {
       setReRender(!reRender)
       setErrorState('')
     } else {
-      setErrorState('Incorrect login or password')
+      setErrorState('Niepoprawne hasło lub login')
       store.dispatch({ type: LOGOUT_USER })
       setReRender(!reRender)
     }
@@ -59,14 +59,14 @@ const LoginForm = () => {
         <Logo />
         {!isUserLoggedIn ? (
           <>
-            <h3>Hello! Log in here</h3>
+            <h3>Witaj! Zaloguj się tutaj.</h3>
             <input type='text' name='login' placeholder='login' value={login} onChange={inputChange} /> <br />
             <input type='password' name='password' placeholder='password' value={password} onChange={inputChange} /> <br />
             <p id='errorP'>{errorState} </p>
-            <button>Log in</button>
+            <button>Zaloguj się</button>
           </>
         ) : (
-          <button>Wyloguj</button>
+          <button>Wyloguj się</button>
         )}
       </form>
       {isUserLoggedIn ? <p>Zalogowano</p> : <p>Wylogowano</p>}
