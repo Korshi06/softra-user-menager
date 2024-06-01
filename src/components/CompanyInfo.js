@@ -2,9 +2,8 @@ import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import '../styles/userInfoPage.css'
 import { store } from '../store/UserLoggedStore'
-import { dataStore } from '../store/DataStore'
 
-const CompanyInfo = () => {
+const CompanyInfo = ({ activeAccounts }) => {
   const { companyName, boughtCopies } = store.getState().UserLoginReducer.companyInfo
 
   return (
@@ -20,11 +19,7 @@ const CompanyInfo = () => {
         </Col>
         <Col className='infoBlock'>
           <h5>Pozostało do wykorzystania:</h5>
-          <h3>
-            {boughtCopies === undefined
-              ? 'brak'
-              : boughtCopies - dataStore.getState().DataReducer.aboutCompany.filter((user) => user.Aktywny === true).length}
-          </h3>
+          <h3>{boughtCopies === undefined ? 'brak' : boughtCopies - activeAccounts}</h3>
         </Col>
       </Row>
     </Container>

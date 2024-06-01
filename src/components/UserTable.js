@@ -17,7 +17,7 @@ const UserTable = ({ gridRefUsers }) => {
           columnDefs={clientsUsersTableNames}
           rowData={dataStore.getState().DataReducer.aboutCompany}
           pagination={true}
-          paginationPageSize={30}
+          paginationPageSize={50}
         />
       </div>
     </Container>

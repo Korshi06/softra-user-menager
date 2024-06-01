@@ -24,12 +24,12 @@ const Footer = () => {
               </li>
               <li>
                 <NavLink to='/clientInfoPage' className='text-black'>
-                  O klientach
+                  Klienci
                 </NavLink>
               </li>
               <li>
                 <NavLink to='/userInfoPage' className='text-black'>
-                  O użytkownikach
+                  Użytkownicy
                 </NavLink>
               </li>
             </ul>

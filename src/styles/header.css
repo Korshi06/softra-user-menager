@@ -18,14 +18,14 @@ header {
 }
 
 .header .nav-link {
-  font-size: 1.8rem;
+  font-size: 1.7rem;
   transition: color 0.3s ease, font-size 0.3s ease;
   color: black;
 }
 
 .header .nav-link:hover {
   text-decoration: underline red;
-  font-size: 2rem;
+  font-size: 1.8rem;
 }
 
 @media (max-width: 767px) {
@@ -63,9 +63,9 @@ header {
   }
 }
 
-@media (max-width: 1198px) and (min-width: 768px) {
+@media (max-width: 1398px) and (min-width: 768px) {
   header {
-    max-height: 13rem;
-    min-height: 13rem;
+    max-height: 12rem;
+    min-height: 12rem;
   }
 }

@@ -11,6 +11,7 @@ import { Provider } from 'react-redux'
 import { dataStore } from '../store/DataStore'
 import ActionButtons from '../components/ActionButtons'
 import { UPDATE_DATA } from '../actions/DataAction'
+import Logo from '../components/Logo'
 
 //All users of the currently logged in company will be shown here
 
@@ -20,12 +21,16 @@ const UserInfoPage = () => {
   const gridRefUsers = React.useRef()
 
   const [filteredUsers, setFilteredUsers] = useState([])
+  const [activeAccounts, setActiveAccounts] = useState(0)
 
   const { IdWlascicielaFirmy } = store.getState().UserLoginReducer.companyInfo
 
   useEffect(() => {
     if (!isAdmin && isUserLoggedIn) {
       setFilteredUsers(clientsUsersTable.filter((user) => user.IdWlascicielaFirmy === IdWlascicielaFirmy))
+      setActiveAccounts(
+        clientsUsersTable.filter((user) => user.IdWlascicielaFirmy === IdWlascicielaFirmy && user.Aktywny === true).length
+      )
     }
     if (isAdmin) {
       setFilteredUsers(clientsUsersTable)
@@ -38,23 +43,26 @@ const UserInfoPage = () => {
     <div className='center'>
       {isUserLoggedIn || isAdmin ? (
         <>
-          <h1>User info</h1>
+          <h1>Użytkownicy</h1>
           <Provider store={dataStore}>
-            <CompanyInfo />
+            <CompanyInfo activeAccounts={activeAccounts} />
             <UserTable gridRefUsers={gridRefUsers} />
             <div className='buttonWrapper'>
-              <ActionButtons gridRefUsers={gridRefUsers} clientPage={false} />
+              <ActionButtons gridRefUsers={gridRefUsers} clientPage={false} setActiveAccounts={setActiveAccounts} />
             </div>
           </Provider>
         </>
       ) : (
         <div className='center'>
-          <h1>O użytkownikach</h1>
+          <Logo />
+          <h1>Użytkownicy</h1>
           <h3>Zaloguj się by wyświetlić</h3>
           <ul>
-            <li className='btnSlimmer'>
-              <NavLink to='/login'>Zaloguj się</NavLink>
-            </li>
+            <ul>
+              <NavLink to='/login'>
+                <li className='btnSlimmer'>Zaloguj się</li>
+              </NavLink>
+            </ul>
           </ul>
         </div>
       )}

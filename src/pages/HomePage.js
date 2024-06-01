@@ -15,12 +15,12 @@ const HomePage = () => {
           <Logo />
           <nav>
             <ul>
-              <li className='btnHome'>
-                <NavLink to='/clientInfoPage'>O klientach</NavLink>
-              </li>
-              <li className='btnHome'>
-                <NavLink to='/userInfoPage'>O użytkownikach</NavLink>
-              </li>
+              <NavLink to='/clientInfoPage'>
+                <li className='btnSlimmer'>Klienci</li>
+              </NavLink>
+              <NavLink to='/userInfoPage'>
+                <li className='btnSlimmer'>Użytkownicy</li>
+              </NavLink>
             </ul>
           </nav>
         </>
@@ -29,9 +29,11 @@ const HomePage = () => {
           <Logo />
           <nav>
             <ul>
-              <li className='btnHome'>
-                <NavLink to='/login'>Zaloguj się</NavLink>
-              </li>
+              <ul>
+                <NavLink to='/login'>
+                  <li className='btnSlimmer'>Zaloguj się</li>
+                </NavLink>
+              </ul>
             </ul>
           </nav>
         </>

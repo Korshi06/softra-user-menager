@@ -28,12 +28,12 @@ const Header = () => {
               </li>
               <li className='nav-item'>
                 <NavLink to='/clientInfoPage' className='nav-link text-black'>
-                  O klientach
+                  Klienci
                 </NavLink>
               </li>
               <li className='nav-item'>
                 <NavLink to='/userInfoPage' className='nav-link text-black'>
-                  O użytkownikach
+                  Użytkownicy
                 </NavLink>
               </li>
             </ul>

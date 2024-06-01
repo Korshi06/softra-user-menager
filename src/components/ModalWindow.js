@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import '../styles/modalWindow.css'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { store } from '../store/UserLoggedStore'
 
 const ModalWindow = ({
   openModal = false,
@@ -56,11 +57,11 @@ const ModalDeactivateUser = ({ closeModal, gridRef, deactivateUser }) => {
   return (
     <div className='modalOverlay'>
       <div className='modalWindow'>
-        <h2>Are you sure you want to deactivate this user?</h2>
+        <h2>Jesteś pewien że chcesz dezaktywować to konto?</h2>
         <h5>{gridRef.current.api.getSelectedRows()[0].Użytkownik}</h5>
         <div>
-          <button onClick={deactivateUser}>Deactivate</button>
-          <button onClick={closeModal}>Cancel</button>
+          <button onClick={deactivateUser}>Dezaktywuj</button>
+          <button onClick={closeModal}>Anuluj</button>
         </div>
       </div>
     </div>
@@ -90,10 +91,12 @@ const ModalEditClient = ({ closeModal, gridRef, editClient }) => {
           <form onSubmit={editClient}>
             <label>
               Nazwa firmy:
+              <br />
               <input type='text' placeholder='Company Name' name='companyName' value={companyName} onChange={handleChange} />
             </label>
             <label>
               Wykupione kopie:
+              <br />
               <input type='number' placeholder='Bought Copies' name='boughtCopies' value={boughtCopies} onChange={handleChange} />
             </label>
             <br />
@@ -116,71 +119,55 @@ const ModalEditUser = ({ closeModal, gridRef, editUser }) => {
   return (
     <div className='modalOverlay'>
       <div className='modalWindow'>
-        <h2>Edytowanie: Editing {gridRef.current.api.getSelectedRows()[0].Użytkownik}</h2>
+        <h2>Edytowanie: {gridRef.current.api.getSelectedRows()[0].Użytkownik}</h2>
         <div>
           <form onSubmit={handleSubmit(editUser)}>
-            <input
-              type='number'
-              defaultValue={gridRef.current.api.getSelectedRows()[0].IdWlascicielaFirmy}
-              placeholder='IdWlascicielaFirmy'
-              {...register('IdWlascicielaFirmy', { required: true, min: 1 })}
-            />
-            {errors.IdWlascicielaFirmy && <span>IdWlascicielaFirmy is required and must be greater than 0</span>}
-
-            <input
-              type='text'
-              defaultValue={gridRef.current.api.getSelectedRows()[0].Użytkownik}
-              placeholder='Użytkownik'
-              {...register('Użytkownik', { required: true, minLength: 3, maxLength: 50 })}
-            />
-            {errors.Użytkownik && (
+            <label>
+              Nazwa urządzenia
+              <br />
+              <input
+                type='text'
+                defaultValue={gridRef.current.api.getSelectedRows()[0].NazwaUrzadzenia}
+                placeholder='Nazwa urządzenia'
+                {...register('NazwaUrzadzenia', { required: true, minLength: 3, maxLength: 50 })}
+              />
+            </label>
+            {errors.NazwaUrzadzenia && (
               <span>
-                {errors.Użytkownik.type === 'required'
-                  ? 'Pole użytkownik jest wymagane'
-                  : 'Pole urzytkowni musi składać się z 3 do 50 znaków'}
-              </span>
-            )}
-
-            <input
-              type='text'
-              defaultValue={gridRef.current.api.getSelectedRows()[0].NrIMEI}
-              placeholder='Nr IMEI'
-              {...register('NrIMEI', { required: true, minLength: 12, maxLength: 12 })}
-            />
-            {errors.NrIMEI && (
-              <span>{errors.NrIMEI.type === 'required' ? 'Pole Nr IMEI jest wymage' : 'Pole Nr IMEI musi składać się z 12 cyfr'}</span>
-            )}
-
-            <input
-              type='text'
-              defaultValue={gridRef.current.api.getSelectedRows()[0].NazwaUrządzenia}
-              placeholder='NazwaUrzadzenia'
-              {...register('NazwaUrzadzenia', { required: true, minLength: 3, maxLength: 50 })}
-            />
-            {errors.NazwaUrządzenia && (
-              <span>
-                {errors.NazwaUrządzenia.type === 'required'
+                {errors.NazwaUrzadzenia.type === 'required'
                   ? 'Pole Nazwa urządzenia jest wymagane'
                   : 'Pole Nazwa urządzenia musi mieścić się między 3 a 50 znakami'}
               </span>
             )}
 
-            <input
-              type='text'
-              defaultValue={gridRef.current.api.getSelectedRows()[0].Dział}
-              placeholder='Dział'
-              {...register('Dzial', { required: true, minLength: 3, maxLength: 50 })}
-            />
+            <label>
+              Dział
+              <br />
+              <input
+                type='text'
+                defaultValue={gridRef.current.api.getSelectedRows()[0].Dział}
+                placeholder='Dział'
+                {...register('Dzial', { required: true, minLength: 3, maxLength: 50 })}
+              />
+            </label>
             {errors.Dział && (
-              <span>{errors.Dział.type === 'required' ? 'Pole Dział jest wymagane' : 'Pole Dział musi mieścić się między 3 a 50 znakami'}</span>
+              <span>
+                {errors.Dział.type === 'required'
+                  ? 'Pole Dział jest wymagane'
+                  : 'Pole Dział musi mieścić się między 3 a 50 znakami'}
+              </span>
             )}
 
-            <input
-              type='text'
-              defaultValue={gridRef.current.api.getSelectedRows()[0].NrTelefonu}
-              placeholder='Nr Telefonu'
-              {...register('NrTelefonu', { required: true, pattern: /^\d{3}-\d{3}-\d{4}$/ })}
-            />
+            <label>
+              Nr Telefonu
+              <br />
+              <input
+                type='text'
+                defaultValue={gridRef.current.api.getSelectedRows()[0].NrTelefonu}
+                placeholder='Nr Telefonu'
+                {...register('NrTelefonu', { required: true, pattern: /^\d{3}-\d{3}-\d{4}$/ })}
+              />
+            </label>
             {errors.NrTelefonu && (
               <span>
                 {errors.NrTelefonu.type === 'required'
@@ -189,35 +176,45 @@ const ModalEditUser = ({ closeModal, gridRef, editUser }) => {
               </span>
             )}
 
-            <input
-              type='text'
-              defaultValue={gridRef.current.api.getSelectedRows()[0]['Wersja aplikacji']}
-              placeholder='Wersja aplikacji'
-              {...register('WersjaAplikacji', { required: true, pattern: /^\d+\.\d+$/ })}
-            />
-            {errors['Wersja aplikacji'] && (
+            <label>
+              Wersja aplikacji
+              <br />
+              <input
+                type='text'
+                defaultValue={gridRef.current.api.getSelectedRows()[0]['Wersja aplikacji']}
+                placeholder='Wersja aplikacji'
+                {...register('WersjaAplikacji', { required: true, pattern: /^\d+\.\d+$/ })}
+              />
+            </label>
+            {errors.WersjaAplikacji && (
               <span>
-                {errors['Wersja aplikacji'].type === 'required'
-                  ? 'Pole Wersja aplikacji jest wymagene'
+                {errors.WersjaAplikacji.type === 'required'
+                  ? 'Pole Wersja aplikacji jest wymagane'
                   : 'Pole Wersja aplikacji musi być zgodne ze wzorem 1.0'}
               </span>
             )}
 
-            <input
-              type='date'
-              defaultValue={gridRef.current.api.getSelectedRows()[0].ostatniaAktywność.slice()}
-              placeholder='Ostatnia Aktywność'
-              {...register('ostatniaAktywność')}
-            />
+            <label>
+              Ostatnia Aktywność
+              <br />
+              <input
+                type='date'
+                defaultValue={gridRef.current.api.getSelectedRows()[0].ostatniaAktywność.slice()}
+                placeholder='Ostatnia Aktywność'
+                {...register('ostatniaAktywność')}
+              />
+            </label>
 
             <label>
               Aktywny
+              <br />
               <input type='checkbox' {...register('Aktywny')} />
             </label>
 
-            <button type='submit'>Submit</button>
+            <button type='submit'>Prześlij</button>
           </form>
-          <button onClick={closeModal}>Cancel</button>
+
+          <button onClick={closeModal}>Anuluj</button>
         </div>
       </div>
     </div>
@@ -228,11 +225,11 @@ const ModalDeleteClient = ({ closeModal, gridRef, deleteFromClients }) => {
   return (
     <div className='modalOverlay'>
       <div className='modalWindow'>
-        <h2>Are you sure you want to delete this item?</h2>
+        <h2>Jesteś pewien że chcesz usunąć to konto?</h2>
         <h5>{gridRef.current.api.getSelectedRows()[0].companyName}</h5>
         <div>
-          <button onClick={deleteFromClients}>Delete</button>
-          <button onClick={closeModal}>Cancel</button>
+          <button onClick={deleteFromClients}>Usuń</button>
+          <button onClick={closeModal}>Anuluj</button>
         </div>
       </div>
     </div>
@@ -243,11 +240,11 @@ const ModalDeleteUser = ({ closeModal, gridRef, deleteFromUsers }) => {
   return (
     <div className='modalOverlay'>
       <div className='modalWindow'>
-        <h2>Are you sure you want to delete this item?</h2>
+        <h2>Jesteś pewien że chcesz usunąć to konto?</h2>
         <h5>{gridRef.current.api.getSelectedRows()[0].Użytkownik}</h5>
         <div>
-          <button onClick={deleteFromUsers}>Delete</button>
-          <button onClick={closeModal}>Cancel</button>
+          <button onClick={deleteFromUsers}>Usuń</button>
+          <button onClick={closeModal}>Anuluj</button>
         </div>
       </div>
     </div>
@@ -267,31 +264,41 @@ const ModalAdding = ({ addClient, closeModal, addUser, clientPage }) => {
     Inputs = () => {
       return (
         <form onSubmit={handleSubmit(addClient)}>
-          <input
-            type='text'
-            placeholder='Company Name'
-            {...register('Company Name', { required: true, min: 3, maxLength: 50 })}
-          />
+          <label>
+            Nazwa firmy
+            <br />
+            <input
+              type='text'
+              placeholder='Nazwa firmy'
+              {...register('Company Name', { required: true, min: 3, maxLength: 50 })}
+            />
+          </label>
           {errors['Company Name'] && (
             <span>
               {errors['Company Name'].type === 'required'
-                ? 'Pole Company name jest wymagane'
-                : 'Pole Company Name musi mieścić się między 3 a 50 znakami'}
+                ? 'Pole Nazwa firmy jest wymagane'
+                : 'Pole Nazwa firmy musi mieścić się między 3 a 50 znakami'}
             </span>
           )}
-          <input
-            type='number'
-            placeholder='Bought Copies'
-            {...register('Bought Copies', { required: true, max: 99999, min: 0, maxLength: 6 })}
-          />
+
+          <label>
+            Kupione kopie
+            <br />
+            <input
+              type='number'
+              placeholder='Kupione kopie'
+              {...register('Bought Copies', { required: true, max: 99999, min: 0, maxLength: 6 })}
+            />
+          </label>
           {errors['Bought Copies'] && (
             <span>
               {errors['Bought Copies'].type === 'required'
-                ? 'Pole Bought copies jest wymagane'
-                : 'Pole Bought copies musi mieścić się między 0 a 99999'}
+                ? 'Pole Kupione kopie jest wymagane'
+                : 'Pole Kupione kopie musi mieścić się między 0 a 99999'}
             </span>
           )}
-          <button>Add client</button>
+
+          <button>Dodaj</button>
         </form>
       )
     }
@@ -299,19 +306,32 @@ const ModalAdding = ({ addClient, closeModal, addUser, clientPage }) => {
     Inputs = () => {
       return (
         <form onSubmit={handleSubmit(addUser)}>
-          <input
-            type='number'
-            placeholder='IdWlascicielaFirmy'
-            {...register('IdWlascicielaFirmy', { required: true, max: 99999, min: 1, maxLength: 6 })}
-          />
-          {errors['IdWlascicielaFirmy'] && (
-            <span>
-              {errors['IdWlascicielaFirmy'].type === 'required'
-                ? 'Pole Id wlaściciela jest wymagane'
-                : 'Pole Id wlaścicieka musi mieścić się między 1 a 99999'}
-            </span>
-          )}
-          <input type='text' placeholder='Użytkownik' {...register('Użytkownik', { required: true, min: 3, maxLength: 50 })} />
+          {store.getState().UserLoginReducer.isAdmin ? (
+            <>
+              <label>
+                Id Właściciela
+                <br />
+                <input
+                  type='number'
+                  placeholder='Id Właściciela'
+                  {...register('IdWlasciciela', { required: true, max: 99999, min: 1, maxLength: 6 })}
+                />
+              </label>
+              {errors['IdWlasciciela'] && (
+                <span>
+                  {errors['IdWlasciciela'].type === 'required'
+                    ? 'Pole Id właściciela jest wymagane'
+                    : 'Pole Id właściciela musi mieścić się między 1 a 99999'}
+                </span>
+              )}
+            </>
+          ) : null}
+
+          <label>
+            Użytkownik
+            <br />
+            <input type='text' placeholder='Użytkownik' {...register('Użytkownik', { required: true, min: 3, maxLength: 50 })} />
+          </label>
           {errors['Użytkownik'] && (
             <span>
               {errors['Użytkownik'].type === 'required'
@@ -319,31 +339,57 @@ const ModalAdding = ({ addClient, closeModal, addUser, clientPage }) => {
                 : 'Pole użytkownik musi mieścić się między 3 a 50 znakami'}
             </span>
           )}
-          <input type='text' placeholder='Nr IMEI' {...register('NrIMEI', { required: true, minLength: 12, maxLength: 12 })} />
+
+          <label>
+            Nr IMEI
+            <br />
+            <input type='text' placeholder='Nr IMEI' {...register('NrIMEI', { required: true, minLength: 12, maxLength: 12 })} />
+          </label>
           {errors['Nr IMEI'] && (
-            <span>{errors['Nr IMEI'].type === 'required' ? 'Nr IMEI is required' : 'Nr IMEI must be exactly 12 characters'}</span>
+            <span>
+              {errors['Nr IMEI'].type === 'required' ? 'Nr IMEI jest wymagany' : 'Nr IMEI musi mieć dokładnie 12 znaków'}
+            </span>
           )}
-          <input
-            type='text'
-            placeholder='Nazwa Urządzenia'
-            {...register('NazwaUrzadzenia', { required: true, min: 3, maxLength: 50 })}
-          />
+
+          <label>
+            Nazwa Urządzenia
+            <br />
+            <input
+              type='text'
+              placeholder='Nazwa Urządzenia'
+              {...register('NazwaUrzadzenia', { required: true, min: 3, maxLength: 50 })}
+            />
+          </label>
           {errors['Nazwa Urządzenia'] && (
             <span>
               {errors['Nazwa Urządzenia'].type === 'required'
                 ? 'Pole Nazwa urządzenia jest wymagane'
-                : 'Pole Nazwa urządzenia musi mieścić się między 3 a 50'}
+                : 'Pole Nazwa urządzenia musi mieścić się między 3 a 50 znakami'}
             </span>
           )}
-          <input type='text' placeholder='Dział' {...register('Dzial', { required: true, min: 3, maxLength: 50 })} />
+
+          <label>
+            Dział
+            <br />
+            <input type='text' placeholder='Dział' {...register('Dzial', { required: true, min: 3, maxLength: 50 })} />
+          </label>
           {errors['Dział'] && (
-            <span>{errors['Dział'].type === 'required' ? 'Pole Dział jest wymagane' : 'Pole Dział musi się miescić między 3 a 50 znakami'}</span>
+            <span>
+              {errors['Dział'].type === 'required'
+                ? 'Pole Dział jest wymagane'
+                : 'Pole Dział musi się mieścić między 3 a 50 znakami'}
+            </span>
           )}
-          <input
-            type='text'
-            placeholder='Nr Telefonu'
-            {...register('NrTelefonu', { required: true, pattern: /^\d{3}-\d{3}-\d{4}$/ })}
-          />
+
+          <label>
+            Nr Telefonu
+            <br />
+            <input
+              type='text'
+              placeholder='Nr Telefonu'
+              {...register('NrTelefonu', { required: true, pattern: /^\d{3}-\d{3}-\d{4}$/ })}
+            />
+          </label>
           {errors['Nr Telefonu'] && (
             <span>
               {errors['Nr Telefonu'].type === 'required'
@@ -351,25 +397,38 @@ const ModalAdding = ({ addClient, closeModal, addUser, clientPage }) => {
                 : 'Pole Nr telefonu musi być zgodne ze wzorem 123-456-7890'}
             </span>
           )}
-          <input
-            type='text'
-            placeholder='Wersja aplikacji'
-            {...register('WersjaAplikacji', { required: true, pattern: /^\d+\.\d+$/ })}
-          />
+
+          <label>
+            Wersja aplikacji
+            <br />
+            <input
+              type='text'
+              placeholder='Wersja aplikacji'
+              {...register('WersjaAplikacji', { required: true, pattern: /^\d+\.\d+$/ })}
+            />
+          </label>
           {errors['Wersja aplikacji'] && (
             <span>
               {errors['Wersja aplikacji'].type === 'required'
                 ? 'Pole Wersja aplikacji jest wymagane'
-                : 'Pole Nr Telefonu musi być zgodne ze wzorem 1.0'}
+                : 'Pole Wersja aplikacji musi być zgodne ze wzorem 1.0'}
             </span>
           )}
-          <input type='date' placeholder='Ostatnia Aktywność' {...register('ostatniaAktywność', { required: true })} />
-          {errors['Ostatnia Aktywność'] && <span>Ostatnia Aktywność is required</span>}
+
+          <label>
+            Ostatnia Aktywność
+            <br />
+            <input type='date' placeholder='Ostatnia Aktywność' {...register('ostatniaAktywność', { required: true })} />
+          </label>
+          {errors['Ostatnia Aktywność'] && <span>Pole Ostatnia Aktywność jest wymagane</span>}
+
           <label>
             Aktywny
+            <br />
             <input type='checkbox' {...register('Aktywny')} />
           </label>
-          <button>Dodaj użytkownika</button>
+
+          <button>Dodaj</button>
         </form>
       )
     }

@@ -4,9 +4,8 @@ import { dataStore } from '../store/DataStore'
 import { UPDATE_DATA, UPDATE_USER } from '../actions/DataAction'
 import '../styles/actionButtons.css'
 import { store } from '../store/UserLoggedStore'
-import { current } from '@reduxjs/toolkit'
 
-const ActionButtons = ({ gridRefClients, gridRefUsers, clientPage }) => {
+const ActionButtons = ({ gridRefClients, gridRefUsers, clientPage, setActiveAccounts }) => {
   const [openModal, setOpenModal] = useState(false)
   const [editing, setEditing] = useState(false)
   const [adding, setAdding] = useState(false)
@@ -19,6 +18,7 @@ const ActionButtons = ({ gridRefClients, gridRefUsers, clientPage }) => {
 
   const deactivateUser = () => {
     const selectedUser = gridRefUsers.current.api.getSelectedRows()[0]
+    const { Id } = selectedUser
     const { IdWlascicielaFirmy } = selectedUser
 
     const deactivatedUser = {
@@ -26,13 +26,10 @@ const ActionButtons = ({ gridRefClients, gridRefUsers, clientPage }) => {
       Aktywny: false,
     }
 
-     
-
     let currentUsers = []
     if (store.getState().UserLoginReducer.isAdmin) {
       currentUsers = dataStore.getState().DataReducer.aboutUser
     } else {
-      console.log(store.getState().UserLoginReducer.companyInfo.IdWlascicielaFirmy)
       currentUsers = dataStore
         .getState()
         .DataReducer.aboutUser.filter(
@@ -40,13 +37,16 @@ const ActionButtons = ({ gridRefClients, gridRefUsers, clientPage }) => {
         )
     }
 
-
-    const updatedUsers = dataStore
-      .getState()
-      .DataReducer.aboutUser.map((user) => (user.IdWlascicielaFirmy === IdWlascicielaFirmy ? deactivatedUser : user))
+    const updatedUsers = currentUsers.map((user) => (user.Id === IdWlascicielaFirmy ? deactivatedUser : user))
 
     dataStore.dispatch({ type: UPDATE_USER, aboutUser: updatedUsers })
     gridRefUsers.current.api.setRowData(updatedUsers)
+
+    setActiveAccounts(
+      dataStore
+        .getState()
+        .DataReducer.aboutUser.filter((user) => user.IdWlascicielaFirmy === IdWlascicielaFirmy && user.Aktywny === true).length
+    )
 
     setOpenModal(false)
     setDeactivation(false)
@@ -86,7 +86,9 @@ const ActionButtons = ({ gridRefClients, gridRefUsers, clientPage }) => {
 
     const editedUser = {
       ...selectedUser,
-      IdWlascicielaFirmy: e.IdWlascicielaFirmy,
+      IdWlascicielaFirmy: e.IdWlascicielaFirmy
+        ? e.IdWlascicielaFirmy
+        : store.getState().UserLoginReducer.companyInfo.IdWlascicielaFirmy,
       Użytkownik: e.Użytkownik,
       NrIMEI: e.NrIMEI,
       NazwaUrządzenia: e.NazwaUrzadzenia,
@@ -101,7 +103,6 @@ const ActionButtons = ({ gridRefClients, gridRefUsers, clientPage }) => {
     if (store.getState().UserLoginReducer.isAdmin) {
       currentUsers = dataStore.getState().DataReducer.aboutUser
     } else {
-      console.log(store.getState().UserLoginReducer.companyInfo.IdWlascicielaFirmy)
       currentUsers = dataStore
         .getState()
         .DataReducer.aboutUser.filter(
@@ -113,6 +114,15 @@ const ActionButtons = ({ gridRefClients, gridRefUsers, clientPage }) => {
 
     dataStore.dispatch({ type: UPDATE_USER, aboutUser: updatedUsers })
     gridRefUsers.current.api.setRowData(updatedUsers)
+
+    setActiveAccounts(
+      dataStore
+        .getState()
+        .DataReducer.aboutUser.filter(
+          (user) =>
+            user.IdWlascicielaFirmy === store.getState().UserLoginReducer.companyInfo.IdWlascicielaFirmy && user.Aktywny === true
+        ).length
+    )
 
     setOpenModal(false)
     setEditing(false)
@@ -128,6 +138,7 @@ const ActionButtons = ({ gridRefClients, gridRefUsers, clientPage }) => {
     setOpenModal(false)
     setAdding(false)
     setEditing(false)
+    setDeactivation(false)
   }
 
   const deleteFromClients = () => {
@@ -146,13 +157,11 @@ const ActionButtons = ({ gridRefClients, gridRefUsers, clientPage }) => {
 
   const deleteFromUsers = () => {
     const selectedUser = gridRefUsers.current.api.getSelectedRows()[0]
-    const { Id } = selectedUser
 
     let currentUsers = []
     if (store.getState().UserLoginReducer.isAdmin) {
       currentUsers = dataStore.getState().DataReducer.aboutUser
     } else {
-      console.log(store.getState().UserLoginReducer.companyInfo.IdWlascicielaFirmy)
       currentUsers = dataStore
         .getState()
         .DataReducer.aboutUser.filter(
@@ -164,6 +173,15 @@ const ActionButtons = ({ gridRefClients, gridRefUsers, clientPage }) => {
 
     dataStore.dispatch({ type: UPDATE_USER, aboutUser: updatedUsers })
     gridRefUsers.current.api.setRowData(updatedUsers)
+
+    setActiveAccounts(
+      dataStore
+        .getState()
+        .DataReducer.aboutUser.filter(
+          (user) =>
+            user.IdWlascicielaFirmy === store.getState().UserLoginReducer.companyInfo.IdWlascicielaFirmy && user.Aktywny === true
+        ).length
+    )
 
     setOpenModal(false)
   }
@@ -193,12 +211,15 @@ const ActionButtons = ({ gridRefClients, gridRefUsers, clientPage }) => {
   }
 
   const addUser = (e) => {
-    const userTable = dataStore.getState().DataReducer.aboutUser.slice()
-    const newId = userTable[userTable.length - 1].Id + 1
+    const userTable =
+      dataStore.getState().DataReducer.aboutUser.slice().length !== 0 ? dataStore.getState().DataReducer.aboutUser.slice() : null
+    const newId = userTable === null ? 1 : userTable[userTable.length - 1].Id + 1
 
     const newUser = {
       Id: newId,
-      IdWlascicielaFirmy: e.IdWlascicielaFirmy,
+      IdWlascicielaFirmy: e.IdWlascicielaFirmy
+        ? e.IdWlascicielaFirmy
+        : store.getState().UserLoginReducer.companyInfo.IdWlascicielaFirmy,
       Użytkownik: e.Użytkownik,
       NrIMEI: e.NrIMEI,
       NazwaUrządzenia: e.NazwaUrzadzenia,
@@ -221,14 +242,22 @@ const ActionButtons = ({ gridRefClients, gridRefUsers, clientPage }) => {
         )
     }
 
-  
-
     const updatedUsers = [...currentUsers, newUser]
     dataStore.dispatch({ type: UPDATE_USER, aboutUser: updatedUsers })
 
     gridRefUsers.current.api.setRowData(dataStore.getState().DataReducer.aboutUser)
 
+    setActiveAccounts(
+      dataStore
+        .getState()
+        .DataReducer.aboutUser.filter(
+          (user) =>
+            user.IdWlascicielaFirmy === store.getState().UserLoginReducer.companyInfo.IdWlascicielaFirmy && user.Aktywny === true
+        ).length
+    )
+
     setOpenModal(false)
+    setAdding(false)
   }
 
   return (
