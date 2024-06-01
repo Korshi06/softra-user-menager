@@ -28,11 +28,11 @@ const ClientInfoPage = () => {
       ) : (
         <div className='center'>
           <Logo />
-          <h1>ClientInfoPage</h1>
-          <h3>Log in as an Admin to access this page</h3>
+          <h1>O klientach</h1>
+          <h3>Zaloguj się jako admin by wyświetlić dane</h3>
           <ul>
             <li className='btnSlimmer'>
-              <NavLink to='/login'>Log in</NavLink>
+              <NavLink to='/login'>Zaloguj się</NavLink>
             </li>
           </ul>
         </div>

@@ -237,10 +237,10 @@ const ActionButtons = ({ gridRefClients, gridRefUsers, clientPage }) => {
         Edytuj
       </button>
       <button onClick={handleAddBtn} className='actionButton'>
-        Add
+        Dodaj
       </button>
       <button onClick={handleDeleteBtn} className='actionButton deleteBtn'>
-        Delete
+        Usuń
       </button>
       {!clientPage && (
         <button onClick={handleDeactivationBtn} className='actionButton deleteBtn'>

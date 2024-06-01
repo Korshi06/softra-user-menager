@@ -9,17 +9,17 @@ const ErrorPage = () => {
       <>
         <>
           <Logo />
-          <h1>Page not found.</h1>
+          <h1>Nie znaleziono strony.</h1>
           <nav>
             <ul>
               <li className='btnSlimmer'>
-                <NavLink to='/clientInfoPage'>Client Info</NavLink>
+                <NavLink to='/clientInfoPage'>O kliencie</NavLink>
               </li>
               <li className='btnSlimmer'>
-                <NavLink to='/userInfoPage'>User Info</NavLink>
+                <NavLink to='/userInfoPage'>O użytkownikach</NavLink>
               </li>
               <li className='btnSlimmer'>
-                <NavLink to='/login'>Login</NavLink>
+                <NavLink to='/login'>Zaloguj się</NavLink>
               </li>
             </ul>
           </nav>
