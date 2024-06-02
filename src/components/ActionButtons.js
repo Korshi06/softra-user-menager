@@ -37,7 +37,7 @@ const ActionButtons = ({ gridRefClients, gridRefUsers, clientPage, setActiveAcco
         )
     }
 
-    const updatedUsers = currentUsers.map((user) => (user.Id === IdWlascicielaFirmy ? deactivatedUser : user))
+    const updatedUsers = currentUsers.map((user) => (user.Id === Id ? deactivatedUser : user))
 
     dataStore.dispatch({ type: UPDATE_USER, aboutUser: updatedUsers })
     gridRefUsers.current.api.setRowData(updatedUsers)
@@ -91,7 +91,7 @@ const ActionButtons = ({ gridRefClients, gridRefUsers, clientPage, setActiveAcco
         : store.getState().UserLoginReducer.companyInfo.IdWlascicielaFirmy,
       Użytkownik: e.Użytkownik,
       NrIMEI: e.NrIMEI,
-      NazwaUrządzenia: e.NazwaUrzadzenia,
+      NazwaUrzadzenia: e.NazwaUrzadzenia,
       Dział: e.Dzial,
       NrTelefonu: e.NrTelefonu,
       ['Wersja aplikacji']: e.WersjaAplikacji,
@@ -222,7 +222,7 @@ const ActionButtons = ({ gridRefClients, gridRefUsers, clientPage, setActiveAcco
         : store.getState().UserLoginReducer.companyInfo.IdWlascicielaFirmy,
       Użytkownik: e.Użytkownik,
       NrIMEI: e.NrIMEI,
-      NazwaUrządzenia: e.NazwaUrzadzenia,
+      NazwaUrzadzenia: e.NazwaUrzadzenia,
       Dział: e.Dzial,
       NrTelefonu: e.NrTelefonu,
       ['Wersja aplikacji']: e.WersjaAplikacji,

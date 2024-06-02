@@ -6,6 +6,7 @@ import loginInfoTable from '../data/loginInfoTable'
 import { aboutCompany } from '../data/aboutCompany'
 import '../styles/LoginForm.css'
 import Logo from '../components/Logo'
+import { useNavigate } from 'react-router-dom'
 // import { redirect } from 'react-router-dom'
 
 const LoginForm = () => {
@@ -14,6 +15,8 @@ const LoginForm = () => {
   const [password, setPassword] = useState('')
   const [errorState, setErrorState] = useState('')
   const { isUserLoggedIn } = store.getState().UserLoginReducer
+
+  const navigate = useNavigate()
 
   const inputChange = (e) => {
     setLogin(e.target.name === 'login' ? e.target.value : login)
@@ -48,8 +51,7 @@ const LoginForm = () => {
       setReRender(!reRender)
       setErrorState('')
 
-      // return redirect('/')
-      return window.location.replace('/')
+      navigate('/')
     } else {
       setErrorState('Niepoprawne hasło lub login')
       store.dispatch({ type: LOGOUT_USER })

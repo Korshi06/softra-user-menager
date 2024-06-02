@@ -119,6 +119,7 @@ const ModalEditUser = ({ closeModal, gridRef, editUser }) => {
   return (
     <div className='modalOverlay'>
       <div className='modalWindow'>
+        {console.log(gridRef.current.api.getSelectedRows()[0])}
         <h2>Edytowanie: {gridRef.current.api.getSelectedRows()[0].Użytkownik}</h2>
         <div>
           <form onSubmit={handleSubmit(editUser)}>
@@ -137,6 +138,42 @@ const ModalEditUser = ({ closeModal, gridRef, editUser }) => {
                 {errors.NazwaUrzadzenia.type === 'required'
                   ? 'Pole Nazwa urządzenia jest wymagane'
                   : 'Pole Nazwa urządzenia musi mieścić się między 3 a 50 znakami'}
+              </span>
+            )}
+
+            <label>
+              Użytkownik
+              <br />
+              <input
+                type='text'
+                defaultValue={gridRef.current.api.getSelectedRows()[0].Użytkownik}
+                placeholder='Użytkownik'
+                {...register('Użytkownik', { required: true, minLength: 3, maxLength: 50 })}
+              />
+            </label>
+            {errors.Użytkownik && (
+              <span>
+                {errors.NazwaUrzadzenia.type === 'required'
+                  ? 'Pole Użytkownik jest wymagane'
+                  : 'Pole Użytkownik musi mieścić się między 3 a 50 znakami'}
+              </span>
+            )}
+
+            <label>
+              Nr IMEI
+              <br />
+              <input
+                type='text'
+                defaultValue={gridRef.current.api.getSelectedRows()[0].NrIMEI}
+                placeholder='Nr IMEI'
+                {...register('NrIMEI', { required: true, minLength: 12, maxLength: 12 })}
+              />
+            </label>
+            {errors.NrIMEI && (
+              <span>
+                {errors.NazwaUrzadzenia.type === 'required'
+                  ? 'Pole Nr IMEI jest wymagane'
+                  : 'Pole Nr IMEI musi składać się z 12 znaków'}
               </span>
             )}
 
@@ -208,7 +245,7 @@ const ModalEditUser = ({ closeModal, gridRef, editUser }) => {
             <label>
               Aktywny
               <br />
-              <input type='checkbox' {...register('Aktywny')} />
+              <input type='checkbox' checked={gridRef.current.api.getSelectedRows()[0].Aktywny} {...register('Aktywny')} />
             </label>
 
             <button type='submit'>Prześlij</button>
