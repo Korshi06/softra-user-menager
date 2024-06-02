@@ -163,7 +163,7 @@ const ModalEditUser = ({ closeModal, gridRef, editUser }) => {
               Nr IMEI
               <br />
               <input
-                type='text'
+                type='number'
                 defaultValue={gridRef.current.api.getSelectedRows()[0].NrIMEI}
                 placeholder='Nr IMEI'
                 {...register('NrIMEI', { required: true, minLength: 12, maxLength: 12 })}
