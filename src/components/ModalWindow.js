@@ -124,20 +124,20 @@ const ModalEditUser = ({ closeModal, gridRef, editUser }) => {
         <div>
           <form onSubmit={handleSubmit(editUser)}>
             <label>
-              Nazwa urządzenia
+              Nazwa Urzadzenia
               <br />
               <input
                 type='text'
                 defaultValue={gridRef.current.api.getSelectedRows()[0].NazwaUrzadzenia}
-                placeholder='Nazwa urządzenia'
+                placeholder='Nazwa Urzadzenia'
                 {...register('NazwaUrzadzenia', { required: true, minLength: 3, maxLength: 50 })}
               />
             </label>
             {errors.NazwaUrzadzenia && (
               <span>
                 {errors.NazwaUrzadzenia.type === 'required'
-                  ? 'Pole Nazwa urządzenia jest wymagane'
-                  : 'Pole Nazwa urządzenia musi mieścić się między 3 a 50 znakami'}
+                  ? 'Pole Nazwa Urzadzenia jest wymagane'
+                  : 'Pole Nazwa Urzadzenia musi mieścić się między 3 a 50 znakami'}
               </span>
             )}
 
@@ -389,19 +389,19 @@ const ModalAdding = ({ addClient, closeModal, addUser, clientPage }) => {
           )}
 
           <label>
-            Nazwa Urządzenia
+            Nazwa Urzadzenia
             <br />
             <input
               type='text'
-              placeholder='Nazwa Urządzenia'
+              placeholder='Nazwa Urzadzenia'
               {...register('NazwaUrzadzenia', { required: true, min: 3, maxLength: 50 })}
             />
           </label>
-          {errors['Nazwa Urządzenia'] && (
+          {errors['Nazwa Urzadzenia'] && (
             <span>
-              {errors['Nazwa Urządzenia'].type === 'required'
-                ? 'Pole Nazwa urządzenia jest wymagane'
-                : 'Pole Nazwa urządzenia musi mieścić się między 3 a 50 znakami'}
+              {errors['Nazwa Urzadzenia'].type === 'required'
+                ? 'Pole Nazwa Urzadzenia jest wymagane'
+                : 'Pole Nazwa Urzadzenia musi mieścić się między 3 a 50 znakami'}
             </span>
           )}
 
